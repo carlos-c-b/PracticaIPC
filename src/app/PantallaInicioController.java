@@ -21,10 +21,11 @@ public class PantallaInicioController {
     private Stage stage;
     private Scene scene;
     private Parent root;
-    @FXML
+    
     /*
      * Cambiar a pantalla de inicio de sesión
      */
+    @FXML
     public void cambiarAInicioSesion(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("PantallaInicioSesion.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -35,6 +36,7 @@ public class PantallaInicioController {
     /*
     * Cambiar a pantalla de registro
     */
+    @FXML
     public void cambiarARegistro(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("PantallaRegistro.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
