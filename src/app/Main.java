@@ -5,29 +5,29 @@
 package app;
 
 import javafx.application.Application;
-import javafx.scene.Group;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
-import javafx.scene.text.Text;
-import javafx.scene.text.Font;
+import javafx.scene.Parent;
+import javafx.fxml.FXMLLoader;
+import java.io.IOException;
 
 /**
  *
  * @author carlos
  */
-public class Test extends Application {
+public class Main extends Application {
 
     @Override
     public void start(Stage stage) {
-        Group root = new Group();
-        Scene scene = new Scene(root, 600, 600);
-        stage.setScene(scene);
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("PantallaInicio.fxml"));
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch(IOException e) {
+            e.getStackTrace();
+        }
         
-        Text text = new Text(220, 300, "Pantalla de prueba");
-        text.setFont(new Font(20));
-        root.getChildren().add(text);
-        
-        stage.show();
     }
 
     public static void main(String[] args) {
