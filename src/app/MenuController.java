@@ -24,22 +24,23 @@ public class MenuController implements Initializable {
 
     @FXML
     private void cerrarSesion(ActionEvent event) {
-        
+        // Guardar cambios
+        // Cambiar pantalla a "PantallaInicio"
     }
 
     @FXML
     private void modificarPerfil(ActionEvent event) {
-        
+        // Poner pantalla delante "PantallaRegistro"
     }
 
     @FXML
     private void hacerEjercicios(ActionEvent event) {
-        
+        // Cambiar escena a "PantallaEjercicios"
     }
 
     @FXML
     private void mostrarResultados(ActionEvent event) {
-        
+        // Cambiar escena a "PantallaResultados"
     }
     
 }
