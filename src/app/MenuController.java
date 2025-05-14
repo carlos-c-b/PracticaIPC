@@ -44,7 +44,7 @@ public class MenuController implements Initializable {
     @FXML
     private void modificarPerfil(ActionEvent event) throws IOException {
         // Poner pantalla delante "PantallaRegistro"
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/PantallaRegistro.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("PantallaRegistro.fxml"));
         Parent root = loader.load();
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
