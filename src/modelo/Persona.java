@@ -21,6 +21,10 @@ public class Persona {
     private final IntegerProperty edad = new SimpleIntegerProperty();
     private final StringProperty imagePath = new SimpleStringProperty();
     
+    public Persona() {
+        
+    }
+    
     public Persona(String nombre, String correo, String contrasenya, int edad, String imagePath) {
         this.nombre.setValue(nombre);
         this.correo.setValue(correo);
