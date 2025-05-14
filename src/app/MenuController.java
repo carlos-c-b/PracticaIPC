@@ -51,8 +51,8 @@ public class MenuController implements Initializable {
         stage.setTitle("Modificar Perfil");
         stage.initModality(Modality.APPLICATION_MODAL);
         
-        PantallaRegistroController controller = loader.getController();
-        controller.setModificarPerfil(persona);
+        //PantallaRegistroController controller = loader.getController();
+        //controller.setModificarPerfil(persona);
         
         stage.showAndWait();
     }
