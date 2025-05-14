@@ -19,18 +19,26 @@ public class Persona {
     private final StringProperty correo = new SimpleStringProperty();
     private final StringProperty contrasenya = new SimpleStringProperty();
     private final IntegerProperty edad = new SimpleIntegerProperty();
-    private final StringProperty imagePath = new SimpleStringProperty();
+    private final StringProperty avatar = new SimpleStringProperty();
     
     public Persona() {
         
     }
     
-    public Persona(String nombre, String correo, String contrasenya, int edad, String imagePath) {
+    public Persona(String nombre, String correo, String contrasenya, int edad) {
         this.nombre.setValue(nombre);
         this.correo.setValue(correo);
         this.contrasenya.setValue(contrasenya);
         this.edad.setValue(edad);
-        this.imagePath.setValue(imagePath);
+        this.avatar.setValue(null);
+    }
+    
+    public Persona(String nombre, String correo, String contrasenya, int edad, String avatar) {
+        this.nombre.setValue(nombre);
+        this.correo.setValue(correo);
+        this.contrasenya.setValue(contrasenya);
+        this.edad.setValue(edad);
+        this.avatar.setValue(avatar);
     }
 
     public StringProperty NombreProperty() {
@@ -81,16 +89,16 @@ public class Persona {
         this.edad.setValue(edad);
     }
 
-    public StringProperty ImagePathProperty() {
-        return imagePath;
+    public StringProperty AvatarProperty() {
+        return avatar;
     }
     
-    public String getImagePath() {
-        return imagePath.getValue();
+    public String getAvatar() {
+        return avatar.getValue();
     }
     
-    public void setImagePath(String imagePath) {
-        this.imagePath.setValue(imagePath);
+    public void setAvatar(String avatar) {
+        this.avatar.setValue(avatar);
     }
     
 }
