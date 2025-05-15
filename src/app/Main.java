@@ -12,7 +12,7 @@ import javafx.fxml.FXMLLoader;
 import java.io.IOException;
 
 /**
- *
+ *s
  * @author carlos
  */
 public class Main extends Application {
