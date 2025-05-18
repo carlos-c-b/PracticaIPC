@@ -12,15 +12,23 @@ import javafx.scene.Parent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
+import javafx.fxml.Initializable;
 
 /**
  *
  * @author carlos
  */
-public class PantallaInicioController {
+public class PantallaInicioController implements Initializable {
     private Stage stage;
     private Scene scene;
     private Parent root;
+
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        
+    }
     
     /*
      * Cambiar a pantalla de inicio de sesión
