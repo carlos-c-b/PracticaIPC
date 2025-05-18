@@ -8,6 +8,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
 import javafx.scene.text.Text;
 import modelo.Persona;
@@ -36,19 +37,32 @@ public class ResultadosController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+        // Poner las fechas de los DatePickers a hoy
         desdeDatePicker.setValue(LocalDate.now());
         hastaDatePicker.setValue(LocalDate.now());
+        
+        // Deshabilitar los botones de HOY
+        desdeButton.setDisable(true);
+        hastaButton.setDisable(true);
+        
+        // Configurar DatePickers para que no puedan seleccionar fechas más haya de HOY
+        desdeDatePicker.setDayCellFactory(picker -> new FechaDateCell());
+        hastaDatePicker.setDayCellFactory(picker -> new FechaDateCell());
         
         // Oyente fecha de desdeDatePicker
         desdeDatePicker.valueProperty().addListener((obs, oldVal, newVal) -> {
             // Si la fecha de desde es posterior a la de hasta
-            if (newVal.isAfter(hastaDatePicker.getValue())) {
+            if (newVal.isAfter(LocalDate.now())) {
+                desdeDatePicker.setValue(LocalDate.now());
+                hastaDatePicker.setValue(LocalDate.now());
+            } else if (newVal.isAfter(hastaDatePicker.getValue())) {
                 hastaDatePicker.setValue(newVal);
             }
             actualizarDatos();
             
             // Deshabilitar botones HOY
-            if (newVal == LocalDate.now()) {
+            if (newVal.isEqual(LocalDate.now()) || newVal.isAfter(LocalDate.now())) {
                 desdeButton.setDisable(true);
             } else {
                 desdeButton.setDisable(false);
@@ -58,13 +72,15 @@ public class ResultadosController implements Initializable {
         // Oyente fecha de hastaDatePicker
         hastaDatePicker.valueProperty().addListener((obs, oldVal, newVal) -> {
             // Si la fecha de hasta es anterior a la de desde
-            if (newVal.isBefore(desdeDatePicker.getValue())) {
+            if (newVal.isAfter(LocalDate.now())) {
+                hastaDatePicker.setValue(LocalDate.now());
+            } else if (newVal.isBefore(desdeDatePicker.getValue())) {
                 desdeDatePicker.setValue(newVal);
             }
             actualizarDatos();
             
             // Deshabilitar botones HOY
-            if (newVal == LocalDate.now()) {
+            if (newVal.isEqual(LocalDate.now()) || newVal.isAfter(LocalDate.now())) {
                 hastaButton.setDisable(true);
             } else {
                 hastaButton.setDisable(false);
