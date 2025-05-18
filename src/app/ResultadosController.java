@@ -38,10 +38,38 @@ public class ResultadosController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         desdeDatePicker.setValue(LocalDate.now());
         hastaDatePicker.setValue(LocalDate.now());
-        // Puede dar error porque al ejecutare la primera orden,
-        // se ejecuta automáticamente el método desdeOnAction() y
-        // se compara desdeDatePicker.getValue() con hastaDatePicker.getValue(),
-        // este último estando vacío
+        
+        // Oyente fecha de desdeDatePicker
+        desdeDatePicker.valueProperty().addListener((obs, oldVal, newVal) -> {
+            // Si la fecha de desde es posterior a la de hasta
+            if (newVal.isAfter(hastaDatePicker.getValue())) {
+                hastaDatePicker.setValue(newVal);
+            }
+            actualizarDatos();
+            
+            // Deshabilitar botones HOY
+            if (newVal == LocalDate.now()) {
+                desdeButton.setDisable(true);
+            } else {
+                desdeButton.setDisable(false);
+            }
+        });
+        
+        // Oyente fecha de hastaDatePicker
+        hastaDatePicker.valueProperty().addListener((obs, oldVal, newVal) -> {
+            // Si la fecha de hasta es anterior a la de desde
+            if (newVal.isBefore(desdeDatePicker.getValue())) {
+                desdeDatePicker.setValue(newVal);
+            }
+            actualizarDatos();
+            
+            // Deshabilitar botones HOY
+            if (newVal == LocalDate.now()) {
+                hastaButton.setDisable(true);
+            } else {
+                hastaButton.setDisable(false);
+            }
+        });
     }
     
     /** Leer datos de la BD con las fechas de las variables y actualizarlos en los campos de texto */
@@ -75,36 +103,6 @@ public class ResultadosController implements Initializable {
     @FXML
     private void hastaHoy(ActionEvent event) {
         hastaDatePicker.setValue(LocalDate.now());
-    }
-
-    @FXML
-    private void desdeOnAction(ActionEvent event) {
-        if (hastaDatePicker.getValue().isBefore(desdeDatePicker.getValue())) {
-            hastaDatePicker.setValue(desdeDatePicker.getValue());
-        }
-        actualizarDatos();
-        
-        // Deshabilitar botones HOY
-        if (desdeDatePicker.getValue() == LocalDate.now()) {
-            desdeButton.setDisable(true);
-        } else {
-            desdeButton.setDisable(false);
-        }
-    }
-
-    @FXML
-    private void hastaOnAction(ActionEvent event) {
-        if (desdeDatePicker.getValue().isAfter(hastaDatePicker.getValue())) {
-            desdeDatePicker.setValue(hastaDatePicker.getValue());
-        }
-        actualizarDatos();
-        
-        // Deshabilitar botones HOY
-        if (hastaDatePicker.getValue() == LocalDate.now()) {
-            hastaButton.setDisable(true);
-        } else {
-            hastaButton.setDisable(false);
-        }
     }
     
 }

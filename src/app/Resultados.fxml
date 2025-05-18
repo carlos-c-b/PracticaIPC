@@ -40,11 +40,11 @@
                 <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <DatePicker fx:id="desdeDatePicker" onAction="#desdeOnAction" prefWidth="128.0" GridPane.columnIndex="1" />
+                  <DatePicker fx:id="desdeDatePicker" prefWidth="128.0" GridPane.columnIndex="1" />
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Desde:" />
                   <Button fx:id="desdeButton" mnemonicParsing="false" onAction="#desdeHoy" text="HOY" GridPane.columnIndex="2" />
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Hasta:" GridPane.rowIndex="1" />
-                  <DatePicker fx:id="hastaDatePicker" onAction="#hastaOnAction" prefWidth="128.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <DatePicker fx:id="hastaDatePicker" prefWidth="128.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <Button fx:id="hastaButton" mnemonicParsing="false" onAction="#hastaHoy" text="HOY" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                </children>
             </GridPane>
