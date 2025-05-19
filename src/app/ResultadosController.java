@@ -1,6 +1,5 @@
 package app;
 
-import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
@@ -8,10 +7,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
 import javafx.scene.text.Text;
-import modelo.Persona;
 
 /**
  * FXML Controller class
@@ -19,8 +16,6 @@ import modelo.Persona;
  * @author Pablo
  */
 public class ResultadosController implements Initializable {
-    
-    Persona persona;
     
     @FXML
     private DatePicker desdeDatePicker;
@@ -98,16 +93,6 @@ public class ResultadosController implements Initializable {
     @FXML
     private void atras(ActionEvent event) {
         // Cambiar a pantalla "Menu"
-    }
-
-    @FXML
-    private void cerrarSesion(ActionEvent event) {
-        Util.cerrarSesion();
-    }
-
-    @FXML
-    private void modificarPerfil(ActionEvent event) throws IOException {
-        Util.modificarPerfil(getClass(), persona);
     }
 
     @FXML

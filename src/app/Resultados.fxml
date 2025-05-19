@@ -13,20 +13,7 @@
 
 <VBox prefHeight="300.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.ResultadosController">
    <children>
-      <HBox>
-         <children>
-            <Button mnemonicParsing="false" onAction="#atras" text="Atrás" />
-            <HBox alignment="CENTER_RIGHT" spacing="8.0" HBox.hgrow="ALWAYS">
-               <children>
-                  <Button mnemonicParsing="false" onAction="#cerrarSesion" text="CERRAR SESIÓN" />
-                  <Button mnemonicParsing="false" onAction="#modificarPerfil" text="MODIFICAR PERFIL" />
-               </children>
-            </HBox>
-         </children>
-         <padding>
-            <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
-         </padding>
-      </HBox>
+      <Button mnemonicParsing="false" onAction="#atras" text="Atrás" />
       <VBox alignment="CENTER" spacing="32.0" VBox.vgrow="ALWAYS">
          <children>
             <GridPane alignment="CENTER" hgap="8.0" vgap="8.0">
@@ -78,4 +65,7 @@
          </padding>
       </VBox>
    </children>
+   <padding>
+      <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+   </padding>
 </VBox>
