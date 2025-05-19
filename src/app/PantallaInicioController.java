@@ -15,42 +15,68 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
+import javafx.stage.Modality;
+import model.User;
+import modelo.Pantalla;
 
 /**
  *
  * @author carlos
  */
 public class PantallaInicioController implements Initializable {
-    private Stage stage;
-    private Scene scene;
-    private Parent root;
+    private User usuario;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
     }
     
-    /*
-     * Cambiar a pantalla de inicio de sesión
-     */
+    /** Cambiar a pantalla de inicio de sesión */
     @FXML
     public void cambiarAInicioSesion(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("PantallaInicioSesion.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+//        // Abrir "PantallaInicioSesion"
+//        FXMLLoader loader = new FXMLLoader(getClass().getResource("PantallaInicioSesion.fxml"));
+//        Parent root = loader.load();
+//        Stage stage = new Stage();
+//        stage.setScene(new Scene(root));
+//        stage.setTitle("Iniciar Sesión");
+//        stage.initModality(Modality.APPLICATION_MODAL);
+//        
+//        // Llamar método para pasarle el usuario que tiene que modificar
+//        PantallaInicioSesion controlador = loader.getController();
+//        controller.setUsuario(usuario);
+//        
+//        stage.showAndWait();
+//        
+//        if (controlador.getRespuesta()) {
+            Main.setRoot(Pantalla.MENU);
+            MenuController controladorMenu = (MenuController) Main.getLoader(Pantalla.MENU);
+            controladorMenu.setUsuario(usuario);
+//        }
     }
-    /*
-    * Cambiar a pantalla de registro
-    */
+    
+    /** Cambiar a pantalla de registro */
     @FXML
     public void cambiarARegistro(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("PantallaRegistro.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+//        // Abrir "PantallaRegistro" en modo registrarse
+//        FXMLLoader loader = new FXMLLoader(getClass().getResource("PantallaRegistro.fxml"));
+//        Parent root = loader.load();
+//        Stage stage = new Stage();
+//        stage.setScene(new Scene(root));
+//        stage.setTitle("Registrarse");
+//        stage.initModality(Modality.APPLICATION_MODAL);
+//        
+//        // Llamar método para especificar que es para modificar perfil
+//        PantallaRegistroController controlador = loader.getController();
+//        controller.setRegistrarse(usuario);
+//        
+//        stage.showAndWait();
+//        
+//        if (controlador.getRespuesta()) {
+            Main.setRoot(Pantalla.MENU);
+            MenuController controladorMenu = (MenuController) Main.getLoader(Pantalla.MENU);
+            controladorMenu.setUsuario(usuario);
+//        }
     }
     
 }

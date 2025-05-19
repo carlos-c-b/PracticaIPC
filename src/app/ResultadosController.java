@@ -1,5 +1,6 @@
 package app;
 
+import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
@@ -9,6 +10,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.text.Text;
+import model.User;
+import modelo.Pantalla;
 
 /**
  * FXML Controller class
@@ -16,6 +19,8 @@ import javafx.scene.text.Text;
  * @author Pablo
  */
 public class ResultadosController implements Initializable {
+    
+    User usuario;
     
     @FXML
     private DatePicker desdeDatePicker;
@@ -83,6 +88,10 @@ public class ResultadosController implements Initializable {
         });
     }
     
+    public void setUsuario(User usuario) {
+        this.usuario = usuario;
+    }
+    
     /** Leer datos de la BD con las fechas de las variables y actualizarlos en los campos de texto */
     private void actualizarDatos() {
         // ...
@@ -91,8 +100,9 @@ public class ResultadosController implements Initializable {
     }
     
     @FXML
-    private void atras(ActionEvent event) {
+    private void atras(ActionEvent event) throws IOException {
         // Cambiar a pantalla "Menu"
+        Main.setRoot(Pantalla.MENU);
     }
 
     @FXML

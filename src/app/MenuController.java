@@ -9,11 +9,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.User;
+import modelo.Pantalla;
 
 /**
  * FXML Controller class
@@ -29,22 +31,26 @@ public class MenuController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        perfil.setImage(usuario.getAvatar());
+        
     }
     
     public void setUsuario(User usuario) {
         this.usuario = usuario;
+//        perfil.setImage(this.usuario.getAvatar());
     }
     
     @FXML
-    private void cerrarSesion(ActionEvent event) {
+    private void cerrarSesion(ActionEvent event) throws IOException {
         // Guardar cambios
+        // ...
+        
         // Cambiar pantalla a "PantallaInicio"
+        Main.setRoot(Pantalla.INICIO);
     }
 
     @FXML
     private void modificarPerfil(MouseEvent event) throws IOException {
-        // Poner pantalla delante "PantallaRegistro"
+        // Abrir "PantallaRegistro" en modo modificar perfil
         FXMLLoader loader = new FXMLLoader(getClass().getResource("PantallaRegistro.fxml"));
         Parent root = loader.load();
         Stage stage = new Stage();
@@ -60,13 +66,19 @@ public class MenuController implements Initializable {
     }
 
     @FXML
-    private void hacerEjercicios(ActionEvent event) {
+    private void hacerEjercicios(ActionEvent event) throws IOException {
         // Cambiar escena a "PantallaEjercicios"
+        Main.setRoot(Pantalla.EJERCICIOS);
+//        EjerciciosController controlador = (EjerciciosController) Main.getLoader(Pantalla.EJERCICIOS);
+//        controlador.setUsuario(usuario);
     }
 
     @FXML
-    private void mostrarResultados(ActionEvent event) {
+    private void mostrarResultados(ActionEvent event) throws IOException {
         // Cambiar escena a "PantallaResultados"
+        Main.setRoot(Pantalla.RESULTADOS);
+        ResultadosController controlador = (ResultadosController) Main.getLoader(Pantalla.RESULTADOS);
+        controlador.setUsuario(usuario);
     }
     
 }
