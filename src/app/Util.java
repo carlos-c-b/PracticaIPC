@@ -33,4 +33,20 @@ public class Util {
         
         stage.showAndWait();
     }
+    
+    public static void registrarse(Class clase, Persona persona) throws IOException {
+        // Poner pantalla delante "PantallaRegistro"
+        
+        FXMLLoader loader = new FXMLLoader(clase.getResource("PantallaRegistro.fxml"));
+        Parent root = loader.load();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.setTitle("Modificar Perfil");
+        stage.initModality(Modality.APPLICATION_MODAL);
+        
+        //PantallaRegistroController controller = loader.getController();
+        //controller.setRegistrarse(persona);
+        
+        stage.showAndWait();
+    }
 }
