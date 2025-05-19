@@ -10,7 +10,6 @@ import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.Parent;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -50,7 +49,7 @@ public class PantallaInicioController implements Initializable {
 //        
 //        if (controlador.getRespuesta()) {
             Main.setRoot(Pantalla.MENU);
-            MenuController controladorMenu = (MenuController) Main.getLoader(Pantalla.MENU);
+            MenuController controladorMenu = (MenuController) Main.getController(Pantalla.MENU);
             controladorMenu.setUsuario(usuario);
 //        }
     }
@@ -74,7 +73,7 @@ public class PantallaInicioController implements Initializable {
 //        
 //        if (controlador.getRespuesta()) {
             Main.setRoot(Pantalla.MENU);
-            MenuController controladorMenu = (MenuController) Main.getLoader(Pantalla.MENU);
+            MenuController controladorMenu = (MenuController) Main.getController(Pantalla.MENU);
             controladorMenu.setUsuario(usuario);
 //        }
     }

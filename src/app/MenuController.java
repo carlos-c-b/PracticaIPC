@@ -69,7 +69,7 @@ public class MenuController implements Initializable {
     private void hacerEjercicios(ActionEvent event) throws IOException {
         // Cambiar escena a "PantallaEjercicios"
         Main.setRoot(Pantalla.EJERCICIOS);
-//        EjerciciosController controlador = (EjerciciosController) Main.getLoader(Pantalla.EJERCICIOS);
+//        EjerciciosController controlador = (EjerciciosController) Main.getController(Pantalla.EJERCICIOS);
 //        controlador.setUsuario(usuario);
     }
 
@@ -77,7 +77,7 @@ public class MenuController implements Initializable {
     private void mostrarResultados(ActionEvent event) throws IOException {
         // Cambiar escena a "PantallaResultados"
         Main.setRoot(Pantalla.RESULTADOS);
-        ResultadosController controlador = (ResultadosController) Main.getLoader(Pantalla.RESULTADOS);
+        ResultadosController controlador = (ResultadosController) Main.getController(Pantalla.RESULTADOS);
         controlador.setUsuario(usuario);
     }
     
