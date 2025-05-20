@@ -14,7 +14,7 @@ import modelo.Pantalla;
 import modelo.PantallaObjeto;
 
 /**
- *s
+ *
  * @author carlos
  */
 public class Main extends Application {

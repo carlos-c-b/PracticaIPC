@@ -31,7 +31,7 @@ public class MenuController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+        perfil.setImage(usuario.getAvatar());
     }
     
     public void setUsuario(User usuario) {
