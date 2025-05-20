@@ -11,10 +11,14 @@
       <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
    </padding>
    <children>
-      <HBox alignment="TOP_RIGHT" spacing="8.0">
+      <HBox alignment="CENTER_RIGHT" spacing="8.0">
          <children>
             <Button mnemonicParsing="false" onAction="#cerrarSesion" text="CERRAR SESIÓN" />
-            <ImageView fx:id="perfil" fitHeight="25.0" fitWidth="25.0" onMouseClicked="#modificarPerfil" pickOnBounds="true" preserveRatio="true" />
+            <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#modificarPerfil" prefHeight="25.0" prefWidth="25.0">
+               <graphic>
+                  <ImageView fx:id="perfil" fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" />
+               </graphic>
+            </Button>
          </children>
       </HBox>
       <VBox alignment="CENTER" spacing="32.0" VBox.vgrow="ALWAYS">

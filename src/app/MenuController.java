@@ -36,46 +36,43 @@ public class MenuController implements Initializable {
     
     public void setUsuario(User usuario) {
         this.usuario = usuario;
-//        perfil.setImage(this.usuario.getAvatar());
+        perfil.setImage(this.usuario.getAvatar());
     }
     
+    /** Cambiar pantlla a "PantallaInicio" */
     @FXML
     private void cerrarSesion(ActionEvent event) throws IOException {
-        // Guardar cambios
-        // ...
-        
-        // Cambiar pantalla a "PantallaInicio"
         Main.setRoot(Pantalla.INICIO);
     }
-
+    
+    /** Abrir pantalla "PantallaRegistro" en modo modificar perfil */
     @FXML
-    private void modificarPerfil(MouseEvent event) throws IOException {
-        // Abrir "PantallaRegistro" en modo modificar perfil
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("PantallaRegistro.fxml"));
-        Parent root = loader.load();
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root));
-        stage.setTitle("Modificar Perfil");
-        stage.initModality(Modality.APPLICATION_MODAL);
-        
-        // Llamar método para especificar que es para modificar perfil
-        //PantallaRegistroController controller = loader.getController();
-        //controller.setModificarPerfil(usuario);
-        
-        stage.showAndWait();
+    private void modificarPerfil(ActionEvent event) throws IOException {
+//        FXMLLoader loader = new FXMLLoader(getClass().getResource("PantallaRegistro.fxml"));
+//        Parent root = loader.load();
+//        Stage stage = new Stage();
+//        stage.setScene(new Scene(root));
+//        stage.setTitle("Modificar Perfil");
+//        stage.initModality(Modality.APPLICATION_MODAL);
+//        
+//        // Llamar método para especificar que es para modificar perfil
+//        PantallaRegistroController controller = loader.getController();
+//        controller.setModificarPerfil(usuario);
+//        
+//        stage.showAndWait();
     }
-
+    
+    /** Cambiar escena a "PantallaEjercicios" */
     @FXML
     private void hacerEjercicios(ActionEvent event) throws IOException {
-        // Cambiar escena a "PantallaEjercicios"
         Main.setRoot(Pantalla.EJERCICIOS);
-//        EjerciciosController controlador = (EjerciciosController) Main.getController(Pantalla.EJERCICIOS);
-//        controlador.setUsuario(usuario);
+        EjerciciosController controlador = (EjerciciosController) Main.getController(Pantalla.EJERCICIOS);
+        controlador.setUsuario(usuario);
     }
-
+    
+    /** Cambiar escena a "PantallaResultados" */
     @FXML
     private void mostrarResultados(ActionEvent event) throws IOException {
-        // Cambiar escena a "PantallaResultados"
         Main.setRoot(Pantalla.RESULTADOS);
         ResultadosController controlador = (ResultadosController) Main.getController(Pantalla.RESULTADOS);
         controlador.setUsuario(usuario);
