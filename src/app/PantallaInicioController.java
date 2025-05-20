@@ -15,6 +15,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
 import javafx.stage.Modality;
+import model.NavDAOException;
+import model.Navigation;
 import model.User;
 import modelo.Pantalla;
 
@@ -32,8 +34,7 @@ public class PantallaInicioController implements Initializable {
     
     /** Cambiar a pantalla de inicio de sesión */
     @FXML
-    public void cambiarAInicioSesion(ActionEvent event) throws IOException {
-//        // Abrir "PantallaInicioSesion"
+    public void cambiarAInicioSesion(ActionEvent event) throws IOException, NavDAOException {
 //        FXMLLoader loader = new FXMLLoader(getClass().getResource("PantallaInicioSesion.fxml"));
 //        Parent root = loader.load();
 //        Stage stage = new Stage();
@@ -47,6 +48,19 @@ public class PantallaInicioController implements Initializable {
 //        
 //        stage.showAndWait();
 //        
+
+        // Ésto debería estar en la clase de iniciar sesión y la de registrarse
+        if (!Navigation.getInstance().exitsNickName("user1")) {
+            System.out.println("Usuario no registrado");
+            return;
+        }
+        usuario = Navigation.getInstance().authenticate("user1", "User123!");
+        if (usuario == null) {
+            System.out.println("Contraseña incorrecta");
+            return;
+        }
+        
+        
 //        if (controlador.getUsuario() != null) {
 //            usuario = controlador.getUsuario();
             Main.setRoot(Pantalla.MENU);
@@ -55,10 +69,9 @@ public class PantallaInicioController implements Initializable {
 //        }
     }
     
-    /** Cambiar a pantalla de registro */
+    /** Abrir "PantallaRegistro" en modo registrarse */
     @FXML
     public void cambiarARegistro(ActionEvent event) throws IOException {
-//        // Abrir "PantallaRegistro" en modo registrarse
 //        FXMLLoader loader = new FXMLLoader(getClass().getResource("PantallaRegistro.fxml"));
 //        Parent root = loader.load();
 //        Stage stage = new Stage();
@@ -74,9 +87,9 @@ public class PantallaInicioController implements Initializable {
 //        
 //        if (controlador.getUsuario != null) {
 //            usuario = controlador.getUsuario();
-            Main.setRoot(Pantalla.MENU);
-            MenuController controladorMenu = (MenuController) Main.getController(Pantalla.MENU);
-            controladorMenu.setUsuario(usuario);
+//            Main.setRoot(Pantalla.MENU);
+//            MenuController controladorMenu = (MenuController) Main.getController(Pantalla.MENU);
+//            controladorMenu.setUsuario(usuario);
 //        }
     }
     
