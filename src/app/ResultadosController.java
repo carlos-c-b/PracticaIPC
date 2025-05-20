@@ -3,6 +3,7 @@ package app;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,6 +11,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.text.Text;
+import model.Session;
 import model.User;
 import modelo.Pantalla;
 
@@ -20,7 +22,7 @@ import modelo.Pantalla;
  */
 public class ResultadosController implements Initializable {
     
-    User usuario;
+    List<Session> sesiones;
     
     @FXML
     private DatePicker desdeDatePicker;
@@ -88,29 +90,42 @@ public class ResultadosController implements Initializable {
         });
     }
     
-    public void setUsuario(User usuario) {
-        this.usuario = usuario;
+    /** Cargar las sesiones del usuario
+     * @param usuario */
+    public void setSesiones(User usuario) {
+        this.sesiones = usuario.getSessions();
+        this.actualizarDatos();
     }
     
     /** Leer datos de la BD con las fechas de las variables y actualizarlos en los campos de texto */
     private void actualizarDatos() {
-        // ...
-        textAciertos.setText(Integer.toString(0));
-        textFallos.setText(Integer.toString(0));
+        int aciertos = 0, fallos = 0;
+        
+        for (Session s : sesiones) {
+            LocalDate date = s.getTimeStamp().toLocalDate();
+            if (!(date.isAfter(hastaDatePicker.getValue()) || date.isBefore(desdeDatePicker.getValue()))) {
+                aciertos += s.getHits();
+                fallos += s.getFaults();
+            }
+        }
+        
+        textAciertos.setText(Integer.toString(aciertos));
+        textFallos.setText(Integer.toString(fallos));
     }
     
+    /** Cambiar a pantalla "Menu" */
     @FXML
     private void atras(ActionEvent event) throws IOException {
-        // Cambiar a pantalla "Menu"
         Main.setRoot(Pantalla.MENU);
     }
-
+    
+    /** Poner el DatePicker de desde con fecha a HOY */
     @FXML
     private void desdeHoy(ActionEvent event) {
         desdeDatePicker.setValue(LocalDate.now());
-        // No hace falta actualizar el hastaDatePicker porque lo hace en el método desdeOnAction() automáticamente
     }
-
+    
+    /** Poner el DatePicker de hasta con fecha a HOY */
     @FXML
     private void hastaHoy(ActionEvent event) {
         hastaDatePicker.setValue(LocalDate.now());

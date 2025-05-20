@@ -75,7 +75,7 @@ public class MenuController implements Initializable {
     private void mostrarResultados(ActionEvent event) throws IOException {
         Main.setRoot(Pantalla.RESULTADOS);
         ResultadosController controlador = (ResultadosController) Main.getController(Pantalla.RESULTADOS);
-        controlador.setUsuario(usuario);
+        controlador.setSesiones(usuario);
     }
     
 }
