@@ -46,8 +46,8 @@ public class Main extends Application {
         loader = new FXMLLoader(getClass().getResource("Resultados.fxml"));
         pantallas.put(Pantalla.RESULTADOS, new PantallaObjeto(loader.load(), loader.getController(), "Resultados"));
         
-//        loader = new FXMLLoader(getClass().getResource("Ejercicios.fxml"));
-//        pantallas.put(Pantalla.EJERCICIOS, new PantallaObjeto(loader.load(), loader.getController(), "Ejercicios"));
+        loader = new FXMLLoader(getClass().getResource("Ejercicios.fxml"));
+        pantallas.put(Pantalla.EJERCICIOS, new PantallaObjeto(loader.load(), loader.getController(), "Ejercicios"));
         
         // Cargar la pantalla de Inicio
         scene = new Scene(pantallas.get(Pantalla.INICIO).getRoot(), 600, 400);

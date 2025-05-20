@@ -43,11 +43,12 @@ public class PantallaInicioController implements Initializable {
 //        
 //        // Llamar método para pasarle el usuario que tiene que modificar
 //        PantallaInicioSesion controlador = loader.getController();
-//        controller.setUsuario(usuario);
+//        controlador.setIniciarSesion();
 //        
 //        stage.showAndWait();
 //        
-//        if (controlador.getRespuesta()) {
+//        if (controlador.getUsuario() != null) {
+//            usuario = controlador.getUsuario();
             Main.setRoot(Pantalla.MENU);
             MenuController controladorMenu = (MenuController) Main.getController(Pantalla.MENU);
             controladorMenu.setUsuario(usuario);
@@ -67,11 +68,12 @@ public class PantallaInicioController implements Initializable {
 //        
 //        // Llamar método para especificar que es para modificar perfil
 //        PantallaRegistroController controlador = loader.getController();
-//        controller.setRegistrarse(usuario);
+//        controlador.setRegistrarse();
 //        
 //        stage.showAndWait();
 //        
-//        if (controlador.getRespuesta()) {
+//        if (controlador.getUsuario != null) {
+//            usuario = controlador.getUsuario();
             Main.setRoot(Pantalla.MENU);
             MenuController controladorMenu = (MenuController) Main.getController(Pantalla.MENU);
             controladorMenu.setUsuario(usuario);
