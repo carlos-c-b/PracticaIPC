@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<VBox spacing="8.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.InicioSesionController">
+<VBox alignment="TOP_CENTER" spacing="8.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.InicioSesionController">
    <children>
       <GridPane hgap="8.0" vgap="8.0">
          <columnConstraints>
@@ -29,9 +29,10 @@
             <PasswordField fx:id="contrasenyaField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
          <padding>
-            <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
+            <Insets left="16.0" right="16.0" top="16.0" />
          </padding>
       </GridPane>
+      <Text fx:id="textoError" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false" />
       <HBox spacing="128.0">
          <children>
             <Button mnemonicParsing="false" onAction="#cancelar" text="CANCELAR" />

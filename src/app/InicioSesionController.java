@@ -9,6 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 import model.NavDAOException;
 import model.Navigation;
 import model.User;
@@ -28,6 +29,8 @@ public class InicioSesionController implements Initializable {
     private PasswordField contrasenyaField;
     @FXML
     private Button iniciarSesionButton;
+    @FXML
+    private Text textoError;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -47,12 +50,14 @@ public class InicioSesionController implements Initializable {
     @FXML
     private void iniciarSesion(ActionEvent event) throws NavDAOException {
         if (!Navigation.getInstance().exitsNickName(usuarioField.getText())) {
-            System.out.println("Usuario no registrado"); // Poner una advertencia
+            textoError.setText("Usuario no registrado");
+            textoError.setVisible(true);
             return;
         }
         usuario = Navigation.getInstance().authenticate(usuarioField.getText(), contrasenyaField.getText());
         if (usuario == null) {
-            System.out.println("Contraseña incorrecta"); // Poner una advertencia
+            textoError.setText("Contraseña incorrecta");
+            textoError.setVisible(true);
             return;
         }
         usuarioField.getScene().getWindow().hide();
