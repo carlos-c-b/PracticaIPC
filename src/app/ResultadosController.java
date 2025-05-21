@@ -41,6 +41,10 @@ public class ResultadosController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
+        // Poner las fechas de los DatePickers a hoy
+        desdeDatePicker.setValue(LocalDate.now());
+        hastaDatePicker.setValue(LocalDate.now());
+        
         // Deshabilitar los botones de HOY
         desdeButton.setDisable(true);
         hastaButton.setDisable(true);

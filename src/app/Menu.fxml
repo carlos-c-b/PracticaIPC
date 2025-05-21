@@ -5,6 +5,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="400.0" spacing="8.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.MenuController">
    <padding>
@@ -13,18 +14,21 @@
    <children>
       <HBox alignment="CENTER_RIGHT" spacing="8.0">
          <children>
-            <Button mnemonicParsing="false" onAction="#cerrarSesion" text="CERRAR SESIÓN" />
-            <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#modificarPerfil" prefHeight="25.0" prefWidth="25.0">
+            <Button mnemonicParsing="false" onAction="#cerrarSesion" prefHeight="32.0" text="CERRAR SESIÓN" />
+            <Button fx:id="perfilButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#modificarPerfil" text="Usuario">
                <graphic>
-                  <ImageView fx:id="perfil" fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="perfil" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" />
                </graphic>
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
             </Button>
          </children>
       </HBox>
       <VBox alignment="CENTER" spacing="32.0" VBox.vgrow="ALWAYS">
          <children>
-            <Button mnemonicParsing="false" onAction="#hacerEjercicios" text="EJERCICIOS" />
-            <Button mnemonicParsing="false" onAction="#mostrarResultados" text="MOSTRAR RESULTADOS" />
+            <Button mnemonicParsing="false" onAction="#hacerEjercicios" prefHeight="32.0" text="EJERCICIOS" />
+            <Button mnemonicParsing="false" onAction="#mostrarResultados" prefHeight="32.0" text="MOSTRAR RESULTADOS" />
          </children>
       </VBox>
    </children>

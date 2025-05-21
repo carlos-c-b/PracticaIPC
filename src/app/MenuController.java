@@ -9,6 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -28,6 +29,8 @@ public class MenuController implements Initializable {
     
     @FXML
     private ImageView perfil;
+    @FXML
+    private Button perfilButton;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -37,6 +40,7 @@ public class MenuController implements Initializable {
     public void setUsuario(User usuario) {
         this.usuario = usuario;
         perfil.setImage(this.usuario.getAvatar());
+        perfilButton.setText(this.usuario.getNickName());
     }
     
     /** Cambiar pantlla a "PantallaInicio" */
