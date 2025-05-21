@@ -41,10 +41,6 @@ public class ResultadosController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-        // Poner las fechas de los DatePickers a hoy
-        desdeDatePicker.setValue(LocalDate.now());
-        hastaDatePicker.setValue(LocalDate.now());
-        
         // Deshabilitar los botones de HOY
         desdeButton.setDisable(true);
         hastaButton.setDisable(true);
@@ -91,6 +87,11 @@ public class ResultadosController implements Initializable {
      * @param usuario */
     public void setSesiones(User usuario) {
         sesiones = usuario.getSessions();
+        
+        // Poner las fechas de los DatePickers a hoy
+        desdeDatePicker.setValue(LocalDate.now());
+        hastaDatePicker.setValue(LocalDate.now());
+        
         actualizarDatos();
         
         // Configurar el DayCellFactory de los DatePickers
@@ -100,7 +101,7 @@ public class ResultadosController implements Initializable {
         hastaDatePicker.setDayCellFactory(picker -> new FechaDateCell(fechas));
     }
     
-    /** Leer datos de la BD con las fechas de las variables y actualizarlos en los campos de texto */
+    /** Leer datos de aciertos y fallos y, teniendo en cuenta las fechas, actualizarlos en los campos de texto */
     private void actualizarDatos() {
         int aciertos = 0, fallos = 0;
         
