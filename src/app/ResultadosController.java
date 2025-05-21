@@ -3,6 +3,7 @@ package app;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -48,10 +49,6 @@ public class ResultadosController implements Initializable {
         desdeButton.setDisable(true);
         hastaButton.setDisable(true);
         
-        // Configurar DatePickers para que no puedan seleccionar fechas más haya de HOY
-        desdeDatePicker.setDayCellFactory(picker -> new FechaDateCell());
-        hastaDatePicker.setDayCellFactory(picker -> new FechaDateCell());
-        
         // Oyente fecha de desdeDatePicker
         desdeDatePicker.valueProperty().addListener((obs, oldVal, newVal) -> {
             // Si la fecha de desde es posterior a la de hasta
@@ -93,8 +90,14 @@ public class ResultadosController implements Initializable {
     /** Cargar las sesiones del usuario
      * @param usuario */
     public void setSesiones(User usuario) {
-        this.sesiones = usuario.getSessions();
-        this.actualizarDatos();
+        sesiones = usuario.getSessions();
+        actualizarDatos();
+        
+        // Configurar el DayCellFactory de los DatePickers
+        HashSet<LocalDate> fechas = new HashSet<>();
+        for (Session s : sesiones) fechas.add(s.getTimeStamp().toLocalDate());
+        desdeDatePicker.setDayCellFactory(picker -> new FechaDateCell(fechas));
+        hastaDatePicker.setDayCellFactory(picker -> new FechaDateCell(fechas));
     }
     
     /** Leer datos de la BD con las fechas de las variables y actualizarlos en los campos de texto */
