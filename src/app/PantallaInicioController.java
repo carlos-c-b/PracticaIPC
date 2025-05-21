@@ -45,7 +45,7 @@ public class PantallaInicioController implements Initializable {
         usuario = controlador.getUsuario();
         if (usuario != null) {
             Main.setRoot(Pantalla.MENU);
-            MenuController controladorMenu = (MenuController) Main.getController(Pantalla.MENU);
+            MenuController controladorMenu = Main.getController(Pantalla.MENU);
             controladorMenu.setUsuario(usuario);
         }
     }
@@ -82,7 +82,7 @@ public class PantallaInicioController implements Initializable {
 //        usuario = controlador.getUsuario();
 //        if (controlador.getUsuario != null) {
             Main.setRoot(Pantalla.MENU);
-            MenuController controladorMenu = (MenuController) Main.getController(Pantalla.MENU);
+            MenuController controladorMenu = Main.getController(Pantalla.MENU);
             controladorMenu.setUsuario(usuario);
 //        }
     }

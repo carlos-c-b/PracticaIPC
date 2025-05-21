@@ -21,15 +21,15 @@ public class Main extends Application {
     
     private static Stage stage;
     private static Scene scene;
-    private static final HashMap<Pantalla, PantallaObjeto> pantallas = new HashMap<>();
+    private static final HashMap<Pantalla, PantallaObjeto<?>> pantallas = new HashMap<>();
     
     public static void setRoot(Pantalla pantalla) throws IOException {
         scene.setRoot(pantallas.get(pantalla).getRoot());
         stage.setTitle(pantallas.get(pantalla).getTitle());
     }
     
-    public static Object getController(Pantalla pantalla) {
-        return pantallas.get(pantalla).getController();
+    public static <T> T getController(Pantalla pantalla) {
+        return (T) pantallas.get(pantalla).getController();
     }
     
     @Override
@@ -38,16 +38,16 @@ public class Main extends Application {
         
         // Añadir los roots de las pantallas
         FXMLLoader loader = new FXMLLoader(getClass().getResource("PantallaInicio.fxml"));
-        pantallas.put(Pantalla.INICIO, new PantallaObjeto(loader.load(), loader.getController(), "Pantalla de Inicio"));
+        pantallas.put(Pantalla.INICIO, new PantallaObjeto<>(loader.load(), loader.getController(), "Pantalla de Inicio"));
         
         loader = new FXMLLoader(getClass().getResource("Menu.fxml"));
-        pantallas.put(Pantalla.MENU, new PantallaObjeto(loader.load(), loader.getController(), "Menú"));
+        pantallas.put(Pantalla.MENU, new PantallaObjeto<>(loader.load(), loader.getController(), "Menú"));
         
         loader = new FXMLLoader(getClass().getResource("Resultados.fxml"));
-        pantallas.put(Pantalla.RESULTADOS, new PantallaObjeto(loader.load(), loader.getController(), "Resultados"));
+        pantallas.put(Pantalla.RESULTADOS, new PantallaObjeto<>(loader.load(), loader.getController(), "Resultados"));
         
         loader = new FXMLLoader(getClass().getResource("Ejercicios.fxml"));
-        pantallas.put(Pantalla.EJERCICIOS, new PantallaObjeto(loader.load(), loader.getController(), "Ejercicios"));
+        pantallas.put(Pantalla.EJERCICIOS, new PantallaObjeto<>(loader.load(), loader.getController(), "Ejercicios"));
         
         // Cargar la pantalla de Inicio
         scene = new Scene(pantallas.get(Pantalla.INICIO).getRoot(), 600, 400);

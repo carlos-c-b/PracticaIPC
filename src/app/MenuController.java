@@ -66,7 +66,7 @@ public class MenuController implements Initializable {
     @FXML
     private void hacerEjercicios(ActionEvent event) throws IOException {
         Main.setRoot(Pantalla.EJERCICIOS);
-        EjerciciosController controlador = (EjerciciosController) Main.getController(Pantalla.EJERCICIOS);
+        EjerciciosController controlador = Main.getController(Pantalla.EJERCICIOS);
         controlador.setUsuario(usuario);
     }
     
@@ -74,7 +74,7 @@ public class MenuController implements Initializable {
     @FXML
     private void mostrarResultados(ActionEvent event) throws IOException {
         Main.setRoot(Pantalla.RESULTADOS);
-        ResultadosController controlador = (ResultadosController) Main.getController(Pantalla.RESULTADOS);
+        ResultadosController controlador = Main.getController(Pantalla.RESULTADOS);
         controlador.setSesiones(usuario);
     }
     
