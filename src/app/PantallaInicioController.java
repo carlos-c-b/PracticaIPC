@@ -21,8 +21,7 @@ import modelo.Pantalla;
  * @author carlos
  */
 public class PantallaInicioController implements Initializable {
-    private User usuario;
-
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
@@ -42,7 +41,7 @@ public class PantallaInicioController implements Initializable {
         
         // Obtener usuario del inicio de sesión
         InicioSesionController controlador = loader.getController();
-        usuario = controlador.getUsuario();
+        User usuario = controlador.getUsuario();
         if (usuario != null) {
             Main.setRoot(Pantalla.MENU);
             MenuController controladorMenu = Main.getController(Pantalla.MENU);
@@ -67,19 +66,19 @@ public class PantallaInicioController implements Initializable {
 //        stage.showAndWait();
 //        
 
-        // Ésto debería estar en la clase de iniciar sesión y la de registrarse
+        // Ésto debería estar en la clase de registrarse
         if (!Navigation.getInstance().exitsNickName("user1")) {
             System.out.println("Usuario no registrado");
             return;
         }
-        usuario = Navigation.getInstance().authenticate("user1", "User123!");
+        User usuario = Navigation.getInstance().authenticate("user1", "User123!");
         if (usuario == null) {
             System.out.println("Contraseña incorrecta");
             return;
         }
         
         
-//        usuario = controlador.getUsuario();
+//        User usuario = controlador.getUsuario();
 //        if (controlador.getUsuario != null) {
             Main.setRoot(Pantalla.MENU);
             MenuController controladorMenu = Main.getController(Pantalla.MENU);
