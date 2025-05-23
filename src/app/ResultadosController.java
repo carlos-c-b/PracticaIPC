@@ -11,6 +11,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
+import javafx.scene.layout.HBox;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import model.Session;
 import model.User;
@@ -37,6 +39,12 @@ public class ResultadosController implements Initializable {
     private Button desdeButton;
     @FXML
     private Button hastaButton;
+    @FXML
+    private Text pText;
+    @FXML
+    private Rectangle pAciertos;
+    @FXML
+    private Rectangle pFallos;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -119,6 +127,18 @@ public class ResultadosController implements Initializable {
         
         textAciertos.setText(Integer.toString(aciertos));
         textFallos.setText(Integer.toString(fallos));
+        
+        // Actualizar porcentajes
+        double aciertosP = 0;
+        double fallosP = 0;
+        boolean sinDatos = (aciertos == 0 && fallos == 0);
+        if (!sinDatos) {
+            aciertosP = (double) aciertos / (aciertos + fallos);
+            fallosP = (double) fallos / (aciertos + fallos);
+        }
+        pText.setText(sinDatos ? "-" : Integer.toString((int) (aciertosP * 100)) + "%");
+        pAciertos.setWidth(sinDatos ? 0 : aciertosP * 200);
+        pFallos.setWidth(sinDatos ? 0 : fallosP * 200);
     }
     
     /** Cambiar a pantalla "Menu" */

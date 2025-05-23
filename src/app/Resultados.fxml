@@ -8,6 +8,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
@@ -39,26 +40,47 @@
                <children>
                   <VBox alignment="CENTER" spacing="4.0">
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="ACIERTOS">
+                        <Text fill="#40d040" strokeType="OUTSIDE" strokeWidth="0.0" text="ACIERTOS">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Text>
-                        <Text fx:id="textAciertos" strokeType="OUTSIDE" strokeWidth="0.0" text="4" />
+                        <Text fx:id="textAciertos" fill="#40d040" strokeType="OUTSIDE" strokeWidth="0.0" text="4">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font></Text>
                      </children>
                   </VBox>
                   <VBox alignment="CENTER" spacing="4.0">
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="FALLOS">
+                        <Text fill="#e04040" strokeType="OUTSIDE" strokeWidth="0.0" text="FALLOS">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Text>
-                        <Text fx:id="textFallos" strokeType="OUTSIDE" strokeWidth="0.0" text="7" />
+                        <Text fx:id="textFallos" fill="#e04040" strokeType="OUTSIDE" strokeWidth="0.0" text="6">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font></Text>
                      </children>
                   </VBox>
                </children>
             </HBox>
+            <VBox alignment="CENTER" fillWidth="false">
+               <children>
+                  <Text fx:id="pText" fill="GREY" strokeType="OUTSIDE" strokeWidth="0.0" text="40%">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Text>
+                  <HBox prefHeight="16.0" prefWidth="200.0">
+                     <children>
+                        <Rectangle fx:id="pAciertos" fill="#40d040" height="16.0" stroke="TRANSPARENT" strokeType="INSIDE" width="80.0" />
+                        <Rectangle fx:id="pFallos" fill="#e04040" height="16.0" stroke="TRANSPARENT" strokeType="INSIDE" width="120.0" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
          </children>
          <padding>
             <Insets bottom="32.0" left="32.0" right="32.0" top="32.0" />
