@@ -16,7 +16,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.User;
-import modelo.Pantalla;
+import modelo.PantallaID;
 
 /**
  * FXML Controller class
@@ -46,7 +46,7 @@ public class MenuController implements Initializable {
     /** Cambiar pantlla a "PantallaInicio" */
     @FXML
     private void cerrarSesion(ActionEvent event) throws IOException {
-        Main.setRoot(Pantalla.INICIO);
+        Main.setRoot(PantallaID.INICIO);
     }
     
     /** Abrir pantalla "PantallaRegistro" en modo modificar perfil */
@@ -69,16 +69,16 @@ public class MenuController implements Initializable {
     /** Cambiar escena a "PantallaEjercicios" */
     @FXML
     private void hacerEjercicios(ActionEvent event) throws IOException {
-        Main.setRoot(Pantalla.EJERCICIOS);
-        EjerciciosController controlador = Main.getController(Pantalla.EJERCICIOS);
+        Main.setRoot(PantallaID.EJERCICIOS);
+        EjerciciosController controlador = Main.getController(PantallaID.EJERCICIOS);
         controlador.setUsuario(usuario);
     }
     
     /** Cambiar escena a "PantallaResultados" */
     @FXML
     private void mostrarResultados(ActionEvent event) throws IOException {
-        Main.setRoot(Pantalla.RESULTADOS);
-        ResultadosController controlador = Main.getController(Pantalla.RESULTADOS);
+        Main.setRoot(PantallaID.RESULTADOS);
+        ResultadosController controlador = Main.getController(PantallaID.RESULTADOS);
         controlador.setSesiones(usuario);
     }
     

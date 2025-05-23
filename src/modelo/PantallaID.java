@@ -4,7 +4,7 @@ package modelo;
  *
  * @author Pablo
  */
-public enum Pantalla {
+public enum PantallaID {
     INICIO,
     MENU,
     EJERCICIOS,

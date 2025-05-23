@@ -14,7 +14,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.text.Text;
 import model.Session;
 import model.User;
-import modelo.Pantalla;
+import modelo.PantallaID;
 
 /**
  * FXML Controller class
@@ -124,7 +124,7 @@ public class ResultadosController implements Initializable {
     /** Cambiar a pantalla "Menu" */
     @FXML
     private void atras(ActionEvent event) throws IOException {
-        Main.setRoot(Pantalla.MENU);
+        Main.setRoot(PantallaID.MENU);
     }
     
     /** Poner el DatePicker de desde con fecha a HOY */

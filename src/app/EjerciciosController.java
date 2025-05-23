@@ -7,7 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import model.User;
-import modelo.Pantalla;
+import modelo.PantallaID;
 
 /**
  *
@@ -28,7 +28,7 @@ public class EjerciciosController implements Initializable {
 
     @FXML
     private void volver(ActionEvent event) throws IOException {
-        Main.setRoot(Pantalla.MENU);
+        Main.setRoot(PantallaID.MENU);
     }
     
 }

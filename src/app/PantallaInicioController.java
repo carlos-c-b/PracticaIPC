@@ -14,7 +14,7 @@ import javafx.stage.Modality;
 import model.NavDAOException;
 import model.Navigation;
 import model.User;
-import modelo.Pantalla;
+import modelo.PantallaID;
 
 /**
  *
@@ -43,8 +43,8 @@ public class PantallaInicioController implements Initializable {
         InicioSesionController controlador = loader.getController();
         User usuario = controlador.getUsuario();
         if (usuario != null) {
-            Main.setRoot(Pantalla.MENU);
-            MenuController controladorMenu = Main.getController(Pantalla.MENU);
+            Main.setRoot(PantallaID.MENU);
+            MenuController controladorMenu = Main.getController(PantallaID.MENU);
             controladorMenu.setUsuario(usuario);
         }
     }
@@ -80,8 +80,8 @@ public class PantallaInicioController implements Initializable {
         
 //        User usuario = controlador.getUsuario();
 //        if (controlador.getUsuario != null) {
-            Main.setRoot(Pantalla.MENU);
-            MenuController controladorMenu = Main.getController(Pantalla.MENU);
+            Main.setRoot(PantallaID.MENU);
+            MenuController controladorMenu = Main.getController(PantallaID.MENU);
             controladorMenu.setUsuario(usuario);
 //        }
     }
