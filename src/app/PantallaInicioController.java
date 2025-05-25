@@ -12,7 +12,6 @@ import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
 import javafx.stage.Modality;
 import model.NavDAOException;
-import model.Navigation;
 import model.User;
 import modelo.PantallaID;
 
@@ -52,38 +51,25 @@ public class PantallaInicioController implements Initializable {
     /** Abrir "PantallaRegistro" en modo registrarse */
     @FXML
     public void cambiarARegistro(ActionEvent event) throws IOException, NavDAOException {
-//        FXMLLoader loader = new FXMLLoader(getClass().getResource("PantallaRegistro.fxml"));
-//        Parent root = loader.load();
-//        Stage stage = new Stage();
-//        stage.setScene(new Scene(root));
-//        stage.setTitle("Registrarse");
-//        stage.initModality(Modality.APPLICATION_MODAL);
-//        
-//        // Llamar método para especificar que es para modificar perfil
-//        PantallaRegistroController controlador = loader.getController();
-//        controlador.setRegistrarse();
-//        
-//        stage.showAndWait();
-//        
-
-        // Ésto debería estar en la clase de registrarse
-        if (!Navigation.getInstance().exitsNickName("user1")) {
-            System.out.println("Usuario no registrado");
-            return;
-        }
-        User usuario = Navigation.getInstance().authenticate("user1", "User123!");
-        if (usuario == null) {
-            System.out.println("Contraseña incorrecta");
-            return;
-        }
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("PantallaRegistro.fxml"));
+        Parent root = loader.load();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.setTitle("Registrarse");
+        stage.initModality(Modality.APPLICATION_MODAL);
         
+        // Llamar método para especificar que es para modificar perfil
+        PantallaRegistroController controlador = loader.getController();
+        controlador.setRegistrarse();
         
-//        User usuario = controlador.getUsuario();
-//        if (controlador.getUsuario != null) {
+        stage.showAndWait();
+        
+        User usuario = controlador.getUsuario();
+        if (controlador.getUsuario() != null) {
             Main.setRoot(PantallaID.MENU);
             MenuController controladorMenu = Main.getController(PantallaID.MENU);
             controladorMenu.setUsuario(usuario);
-//        }
+        }
     }
     
 }

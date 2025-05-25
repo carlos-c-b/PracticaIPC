@@ -25,7 +25,7 @@ import modelo.PantallaID;
  */
 public class ResultadosController implements Initializable {
     
-    List<Session> sesiones;
+    private List<Session> sesiones;
     
     @FXML
     private DatePicker desdeDatePicker;

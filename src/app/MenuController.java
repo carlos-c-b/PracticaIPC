@@ -25,7 +25,7 @@ import modelo.PantallaID;
  */
 public class MenuController implements Initializable {
     
-    User usuario;
+    private User usuario;
     
     @FXML
     private ImageView perfil;
