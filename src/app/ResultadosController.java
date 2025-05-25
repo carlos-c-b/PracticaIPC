@@ -11,7 +11,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
-import javafx.scene.layout.HBox;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import model.Session;
@@ -136,7 +135,7 @@ public class ResultadosController implements Initializable {
             aciertosP = (double) aciertos / (aciertos + fallos);
             fallosP = (double) fallos / (aciertos + fallos);
         }
-        pText.setText(sinDatos ? "-" : Integer.toString((int) (aciertosP * 100)) + "%");
+        pText.setText(sinDatos ? "--" : Integer.toString((int) (aciertosP * 100)) + "%");
         pAciertos.setWidth(sinDatos ? 0 : aciertosP * 200);
         pFallos.setWidth(sinDatos ? 0 : fallosP * 200);
     }

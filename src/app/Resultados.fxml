@@ -73,7 +73,7 @@
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Text>
-                  <HBox prefHeight="16.0" prefWidth="200.0">
+                  <HBox prefHeight="16.0" prefWidth="200.0" style="-fx-background-color: #808080;">
                      <children>
                         <Rectangle fx:id="pAciertos" fill="#40d040" height="16.0" stroke="TRANSPARENT" strokeType="INSIDE" width="80.0" />
                         <Rectangle fx:id="pFallos" fill="#e04040" height="16.0" stroke="TRANSPARENT" strokeType="INSIDE" width="120.0" />
