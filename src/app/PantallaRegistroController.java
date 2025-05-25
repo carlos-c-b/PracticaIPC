@@ -36,6 +36,7 @@ public class PantallaRegistroController implements Initializable {
     
     private User usuario;
     private BooleanProperty avatarValido, nickValido, correoValido, contrasenyaValida, fechaNacimientoValida;
+    private BooleanProperty isAvatarEqual, isCorreoEqual, isContrasenyaEqual, isFehcaNacimientoEqual;
     private Accion accionValue;
 
     @FXML
@@ -67,9 +68,14 @@ public class PantallaRegistroController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         avatarValido = new SimpleBooleanProperty(true);
         nickValido = new SimpleBooleanProperty(false);
-        correoValido =new SimpleBooleanProperty(false);
+        correoValido = new SimpleBooleanProperty(false);
         contrasenyaValida = new SimpleBooleanProperty(false);
         fechaNacimientoValida = new SimpleBooleanProperty(false);
+        
+        isAvatarEqual = new SimpleBooleanProperty(true);
+        isCorreoEqual = new SimpleBooleanProperty(true);
+        isContrasenyaEqual = new SimpleBooleanProperty(true);
+        isFehcaNacimientoEqual = new SimpleBooleanProperty(true);
         
         // Oyentes
         fieldAvatar.focusedProperty().addListener((obs, oldVal, newVal) -> {
@@ -102,9 +108,6 @@ public class PantallaRegistroController implements Initializable {
             }
         });
         
-        // Enlace para habilitar / deshabilitar botón de acción
-        accionButton.disableProperty().bind(Bindings.not(Bindings.and(nickValido, correoValido).and(contrasenyaValida).and(fechaNacimientoValida)));
-        
         // Configurar el DayCellFactory del DatePicker
         pickerFechaNacimiento.setDayCellFactory(picker -> new RegistroDateCell());
     }
@@ -113,10 +116,37 @@ public class PantallaRegistroController implements Initializable {
         accionValue = Accion.MODIFICAR_PERFIL;
         this.usuario = usuario;
         accionButton.setText("MODIFICAR PERFIL");
+        
+        // Rellenar campos con la información del usuario
+        avatar.setImage(usuario.getAvatar());
+        fieldAvatar.setText(usuario.getAvatar().getUrl());
+        fieldNick.setText(usuario.getNickName());
+        fieldCorreo.setText(usuario.getEmail());
+        fieldContrasenya.setText(usuario.getPassword());
+        pickerFechaNacimiento.setValue(usuario.getBirthdate());
+        
+        // Deshabilitar campo del NickName
         fieldNick.setDisable(true);
         
         // Dar el foco al campo de texto del usuario
         fieldContrasenya.requestFocus();
+        
+        // Enlace para habilitar deshabilitar botón de MODIFICAR PERFIL
+        accionButton.disableProperty().bind(isAvatarEqual.and(isCorreoEqual).and(isContrasenyaEqual).and(isFehcaNacimientoEqual).and(Bindings.not(avatarValido.and(correoValido).and(contrasenyaValida).and(fechaNacimientoValida))));
+        
+        // Oyentes del texto / valor
+        fieldAvatar.textProperty().addListener((obs, oldVal, newVal) -> {
+            isAvatarEqual.setValue(this.usuario.getAvatar().getUrl().equals(newVal));
+        });
+        fieldCorreo.textProperty().addListener((obs, oldVal, newVal) -> {
+            isCorreoEqual.setValue(this.usuario.getEmail().equals(newVal));
+        });
+        fieldContrasenya.textProperty().addListener((obs, oldVal, newVal) -> {
+            isContrasenyaEqual.setValue(this.usuario.getPassword().equals(newVal));
+        });
+        pickerFechaNacimiento.valueProperty().addListener((obs, oldVal, newVal) -> {
+            isFehcaNacimientoEqual.setValue(this.usuario.getBirthdate().equals(newVal));
+        });
     }
     
     public void setRegistrarse() {
@@ -126,6 +156,9 @@ public class PantallaRegistroController implements Initializable {
         
         // Dar el foco al campo de texto del usuario
         fieldNick.requestFocus();
+        
+        // Enlace para habilitar / deshabilitar botón de REGISTRARSE
+        accionButton.disableProperty().bind(Bindings.not(avatarValido.and(nickValido).and(correoValido).and(contrasenyaValida).and(fechaNacimientoValida)));
     }
     
     public User getUsuario() {

@@ -52,18 +52,18 @@ public class MenuController implements Initializable {
     /** Abrir pantalla "PantallaRegistro" en modo modificar perfil */
     @FXML
     private void modificarPerfil(ActionEvent event) throws IOException {
-//        FXMLLoader loader = new FXMLLoader(getClass().getResource("PantallaRegistro.fxml"));
-//        Parent root = loader.load();
-//        Stage stage = new Stage();
-//        stage.setScene(new Scene(root));
-//        stage.setTitle("Modificar Perfil");
-//        stage.initModality(Modality.APPLICATION_MODAL);
-//        
-//        // Llamar método para especificar que es para modificar perfil
-//        PantallaRegistroController controller = loader.getController();
-//        controller.setModificarPerfil(usuario);
-//        
-//        stage.showAndWait();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("PantallaRegistro.fxml"));
+        Parent root = loader.load();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.setTitle("Modificar Perfil");
+        stage.initModality(Modality.APPLICATION_MODAL);
+        
+        // Llamar método para especificar que es para modificar perfil
+        PantallaRegistroController controller = loader.getController();
+        controller.setModificarPerfil(usuario);
+        
+        stage.showAndWait();
     }
     
     /** Cambiar escena a "PantallaEjercicios" */
