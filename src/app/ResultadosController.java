@@ -1,5 +1,6 @@
 package app;
 
+import modelo.ResultadosDateCell;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
@@ -108,8 +109,8 @@ public class ResultadosController implements Initializable {
         // Configurar el DayCellFactory de los DatePickers
         HashSet<LocalDate> fechas = new HashSet<>();
         for (Session s : sesiones) fechas.add(s.getTimeStamp().toLocalDate());
-        desdeDatePicker.setDayCellFactory(picker -> new FechaDateCell(fechas));
-        hastaDatePicker.setDayCellFactory(picker -> new FechaDateCell(fechas));
+        desdeDatePicker.setDayCellFactory(picker -> new ResultadosDateCell(fechas));
+        hastaDatePicker.setDayCellFactory(picker -> new ResultadosDateCell(fechas));
     }
     
     /** Leer datos de aciertos y fallos y, teniendo en cuenta las fechas, actualizarlos en los campos de texto */

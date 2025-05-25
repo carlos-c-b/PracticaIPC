@@ -1,4 +1,4 @@
-package app;
+package modelo;
 
 import java.time.LocalDate;
 import java.util.HashSet;
@@ -8,11 +8,11 @@ import javafx.scene.control.DateCell;
  *
  * @author Pablo
  */
-public class FechaDateCell extends DateCell {
+public class ResultadosDateCell extends DateCell {
     
     private final HashSet<LocalDate> fechas;
 
-    public FechaDateCell(HashSet<LocalDate> fechas) {
+    public ResultadosDateCell(HashSet<LocalDate> fechas) {
         this.fechas = fechas;
     }
     
