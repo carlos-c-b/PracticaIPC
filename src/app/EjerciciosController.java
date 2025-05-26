@@ -2,6 +2,8 @@ package app;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -23,20 +25,39 @@ import model.Navigation;
 import model.NavDAOException;
 import model.Problem;
 import java.util.List;
+import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.shape.Circle;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.paint.Color;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.Toggle;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
+import model.Answer;
 /**
  *
  * @author Pablo
  */
 public class EjerciciosController implements Initializable {
     
-    User usuario;
+    private User usuario;
+    private List<Problem> problems;
+    private final ToggleGroup respuestasToggleGroup = new ToggleGroup();
+    
+    @FXML
+    private Label pregunta;
+    @FXML
+    private VBox contenedorRespuestas;
+    @FXML
+    private Button validarButton;
+    
+    
     
     private Group zoomGroup;
 
@@ -68,10 +89,10 @@ public class EjerciciosController implements Initializable {
     
     private double pressedX, pressedY; // Variables para comprobar que la posición en que se ha presionado
                                 // el ratón es la misma en la que se ha soltado
-	private boolean inLine = false; // Variable para controlar que hemos puesto el primer punto de los dos para la línea
+    private boolean inLine = false; // Variable para controlar que hemos puesto el primer punto de los dos para la línea
 
-	// Radio
-	private double rad = 10;
+    // Radio
+    private double rad = 10;
 
 
     @Override
@@ -153,10 +174,66 @@ public class EjerciciosController implements Initializable {
         map_scrollpane.setVvalue(scrollV);
     }
     
-    public void setUsuario(User usuario) {
+    public void setUsuario(User usuario) throws NavDAOException {
         this.usuario = usuario;
+        
+        // Cargar problemas
+        problems = Navigation.getInstance().getProblems();
+        displayProblem(getRandomProblem());
+        
+        // Enlace para activar / deshabilitar botón de validar
+        validarButton.disableProperty().bind(respuestasToggleGroup.selectedToggleProperty().isNull());
+    }
+    
+    private Problem getRandomProblem() {
+        return problems.get(new Random().nextInt(problems.size()));
+    }
+    
+    private void displayProblem(Problem problem) {
+        pregunta.setText(problem.getText());
+        contenedorRespuestas.getChildren().clear();
+        respuestasToggleGroup.getToggles().clear();
+        List<Answer> resp = new ArrayList<>(problem.getAnswers());
+        Collections.shuffle(resp);
+        for (Answer ans : resp) {
+            RadioButton rb = new RadioButton(ans.getText());
+            rb.setUserData(ans);
+            rb.setToggleGroup(respuestasToggleGroup);
+            contenedorRespuestas.getChildren().add(rb);
+        }
     }
 
+    @FXML
+    private void validar(ActionEvent event) {
+        Answer selectedAnswer = (Answer) respuestasToggleGroup.getSelectedToggle().getUserData();
+        
+        // Añadir una sesión por cada pregunta para prevenir que no se guarden si se cierra la aplicación
+        if (selectedAnswer.getValidity()) usuario.addSession(1, 0);
+        else usuario.addSession(0, 1);
+        
+        // Mostrar cuál es la respuesta correcta
+        for (Toggle toggle : respuestasToggleGroup.getToggles()) {
+            RadioButton rb = (RadioButton) toggle;
+            rb.setStyle(((Answer) rb.getUserData()).getValidity() ? "-fx-text-fill: #40D040" : "-fx-text-fill: #E04040");
+        }
+        validarButton.disableProperty().unbind();
+        validarButton.setDisable(true);
+    }
+    
+    @FXML
+    private void nuevoProblemaAleatorio(ActionEvent event) {
+        displayProblem(getRandomProblem());
+        validarButton.disableProperty().unbind();
+        validarButton.setDisable(false);
+        validarButton.disableProperty().bind(respuestasToggleGroup.selectedToggleProperty().isNull());
+    }
+    
+    @FXML
+    private void elegirProblema(ActionEvent event) {
+        
+    }
+    
+    @FXML
     private void volver(ActionEvent event) throws IOException {
         Main.setRoot(PantallaID.MENU);
     }
