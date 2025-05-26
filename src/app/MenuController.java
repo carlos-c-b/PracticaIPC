@@ -10,9 +10,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.User;
@@ -25,7 +23,7 @@ import modelo.PantallaID;
  */
 public class MenuController implements Initializable {
     
-    User usuario;
+    private User usuario;
     
     @FXML
     private ImageView perfil;
@@ -52,18 +50,19 @@ public class MenuController implements Initializable {
     /** Abrir pantalla "PantallaRegistro" en modo modificar perfil */
     @FXML
     private void modificarPerfil(ActionEvent event) throws IOException {
-//        FXMLLoader loader = new FXMLLoader(getClass().getResource("PantallaRegistro.fxml"));
-//        Parent root = loader.load();
-//        Stage stage = new Stage();
-//        stage.setScene(new Scene(root));
-//        stage.setTitle("Modificar Perfil");
-//        stage.initModality(Modality.APPLICATION_MODAL);
-//        
-//        // Llamar método para especificar que es para modificar perfil
-//        PantallaRegistroController controller = loader.getController();
-//        controller.setModificarPerfil(usuario);
-//        
-//        stage.showAndWait();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("PantallaRegistro.fxml"));
+        Parent root = loader.load();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.setTitle("Modificar Perfil");
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setResizable(false);
+        
+        // Llamar método para especificar que es para modificar perfil
+        PantallaRegistroController controller = loader.getController();
+        controller.setModificarPerfil(usuario);
+        
+        stage.showAndWait();
     }
     
     /** Cambiar escena a "PantallaEjercicios" */
