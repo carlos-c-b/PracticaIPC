@@ -19,7 +19,17 @@ import model.User;
 import modelo.PantallaID;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.input.MouseEvent;
-
+import model.Navigation;
+import model.NavDAOException;
+import model.Problem;
+import java.util.List;
+import javafx.scene.control.ToggleButton;
+import javafx.scene.control.ToggleGroup;
+import javafx.scene.shape.Circle;
+import javafx.scene.control.ColorPicker;
+import javafx.scene.paint.Color;
+import javafx.scene.Node;
+import javafx.scene.layout.Pane;
 /**
  *
  * @author Pablo
@@ -36,12 +46,44 @@ public class EjerciciosController implements Initializable {
     private Slider zoom_slider;
     @FXML
     private Label mousePosition;
-    double x = 0;
-    double y = 0;
+    @FXML
+    private ToggleButton dotButton;
+    @FXML
+    private ToggleButton lineButton;
+    @FXML
+    private ToggleButton arcButton;
+    @FXML 
+    private ToggleButton protractorButton;
+    @FXML
+    private ToggleButton rubberButton;
+    private ToggleGroup toggleGroup;
+    @FXML
+    private ColorPicker colorButton;
+    @FXML
+    private Pane mapPane;
+    
+    private Color color;
+    
+    public Navigation nav;
+    
+    private double pressedX, pressedY; // Variables para comprobar que la posición en que se ha presionado
+                                // el ratón es la misma en la que se ha soltado
+	private boolean inLine = false; // Variable para controlar que hemos puesto el primer punto de los dos para la línea
+
+	// Radio
+	private double rad = 10;
+
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+        // ToggleButtons
+        toggleGroup = new ToggleGroup();
+	dotButton.setToggleGroup(toggleGroup);
+        lineButton.setToggleGroup(toggleGroup);
+	arcButton.setToggleGroup(toggleGroup);
+	rubberButton.setToggleGroup(toggleGroup);
+
+		// Zoom
         double minZoom = 0.15;
         double maxZoom = 1.5;
         zoom_slider.setMin(minZoom);
@@ -67,6 +109,11 @@ public class EjerciciosController implements Initializable {
         contentGroup.getChildren().add(zoomGroup);
         zoomGroup.getChildren().add(map_scrollpane.getContent());
         map_scrollpane.setContent(contentGroup);
+        
+        mapPane.setOnMousePressed(event -> {
+            pressedX = event.getSceneX();
+            pressedY = event.getSceneY();
+        });
     }
     
     @FXML
@@ -116,10 +163,41 @@ public class EjerciciosController implements Initializable {
 
     @FXML
     private void coordinates(MouseEvent event) {
-        x = event.getX();
-        y = event.getY();
-	mousePosition.setText("(" + x + ", " + y + ")");
+	mousePosition.setText("(" + event.getX() + ", " + event.getY() + ")");
     }
+	/*
+	 * Pinta un círculo de radio rad en la posición del mapa en que se ha clicado
+	 * Para ello comprueba que el ratón no se ha arrastrado antes de pintar
+	 * @sceneX event.getSceneX
+	 * @sceneY event.getSceneY
+	 * @localX event.getX
+	 * @localY event.getY
+	 */
+	private void paintButton(double sceneX, double sceneY, double localX, double localY) {
+		// Comprobamos que el ratón no se ha desplazado antes de dibujar el punto (umbral de 2 unidades de coordenadas)
+		if(abs(sceneX - pressedX) < 2 && abs(sceneY - pressedY) < 2) {
+			Circle c = new Circle(localX, localY, rad, colorButton.getValue());
+			mapPane.getChildren().add(c);
+		}
+	}
 
+    @FXML
+    private void handleMouseReleased(MouseEvent event) {
+        double sceneX = event.getSceneX();
+        double sceneY = event.getSceneY();
+		double localX = event.getX();
+		double localY = event.getY();
+        if(dotButton.isSelected())
+            paintButton(sceneX, sceneY, localX, localY);
+        
+    }
+    
+    // Devuelve el valor absoluto de un número
+    private double abs(double a) {
+        if(a >= 0)
+            return a;
+        else
+            return -a;
+    }
 
 }

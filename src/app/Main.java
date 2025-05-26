@@ -24,6 +24,7 @@ public class Main extends Application {
         stage.setTitle(pantallas.get(id).getTitle());
     }
     
+    
     public static <T> T getController(PantallaID pantalla) {
         return (T) pantallas.get(pantalla).getController();
     }
@@ -46,7 +47,7 @@ public class Main extends Application {
         pantallas.put(PantallaID.EJERCICIOS, new Pantalla<>(loader.load(), loader.getController(), "Ejercicios"));
         
         // Cargar la pantalla de Inicio
-        scene = new Scene(pantallas.get(PantallaID.INICIO).getRoot(), 1280, 720);
+        scene = new Scene(pantallas.get(PantallaID.EJERCICIOS).getRoot(), 1280, 720); // He cambiado esto para probar
         stage.setScene(scene);
         stage.setTitle(pantallas.get(PantallaID.INICIO).getTitle());
         stage.show();
