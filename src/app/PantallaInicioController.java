@@ -57,6 +57,7 @@ public class PantallaInicioController implements Initializable {
         stage.setScene(new Scene(root));
         stage.setTitle("Registrarse");
         stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setResizable(false);
         
         // Llamar método para especificar que es para modificar perfil
         PantallaRegistroController controlador = loader.getController();

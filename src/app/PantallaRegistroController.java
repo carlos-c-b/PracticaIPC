@@ -35,7 +35,7 @@ public class PantallaRegistroController implements Initializable {
     
     private User usuario;
     private BooleanProperty avatarValido, nickValido, correoValido, contrasenyaValida, fechaNacimientoValida;
-    private BooleanProperty isAvatarEqual, isCorreoEqual, isContrasenyaEqual, isFehcaNacimientoEqual;
+    private BooleanProperty isAvatarEqual, isCorreoEqual, isContrasenyaEqual, isFechaNacimientoEqual;
     private Accion accionValue;
 
     @FXML
@@ -65,48 +65,6 @@ public class PantallaRegistroController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        avatarValido = new SimpleBooleanProperty(true);
-        nickValido = new SimpleBooleanProperty(false);
-        correoValido = new SimpleBooleanProperty(false);
-        contrasenyaValida = new SimpleBooleanProperty(false);
-        fechaNacimientoValida = new SimpleBooleanProperty(false);
-        
-        isAvatarEqual = new SimpleBooleanProperty(true);
-        isCorreoEqual = new SimpleBooleanProperty(true);
-        isContrasenyaEqual = new SimpleBooleanProperty(true);
-        isFehcaNacimientoEqual = new SimpleBooleanProperty(true);
-        
-        // Oyentes
-        fieldAvatar.focusedProperty().addListener((obs, oldVal, newVal) -> {
-            if (!newVal) {
-                this.avatarValido.setValue(comprobarAvatar(fieldAvatar.getText()));
-            }
-        });
-        fieldNick.focusedProperty().addListener((obs, oldVal, newVal) -> {
-            if (!newVal) {
-                try {
-                    this.nickValido.setValue(comprobarNick(fieldNick.getText()));
-                } catch (NavDAOException ex) {
-                    Logger.getLogger(PantallaRegistroController.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        });
-        fieldCorreo.focusedProperty().addListener((obs, oldVal, newVal) -> {
-            if (!newVal) {
-                this.correoValido.setValue(comprobarCorreo(fieldCorreo.getText()));
-            }
-        });
-        fieldContrasenya.focusedProperty().addListener((obs, oldVal, newVal) -> {
-            if (!newVal) {
-                this.contrasenyaValida.setValue(comprobarContrasenya(fieldContrasenya.getText()));
-            }
-        });
-        pickerFechaNacimiento.focusedProperty().addListener((obs, oldVal, newVal) -> {
-            if (!newVal) {
-                this.fechaNacimientoValida.setValue(comprobarFechaNacimiento(pickerFechaNacimiento.getValue()));
-            }
-        });
-        
         // Configurar el DayCellFactory del DatePicker
         pickerFechaNacimiento.setDayCellFactory(picker -> new RegistroDateCell());
     }
@@ -130,21 +88,41 @@ public class PantallaRegistroController implements Initializable {
         // Dar el foco al campo de texto del usuario
         fieldContrasenya.requestFocus();
         
+        // Variables
+        avatarValido = new SimpleBooleanProperty(true);
+        correoValido = new SimpleBooleanProperty(true);
+        contrasenyaValida = new SimpleBooleanProperty(true);
+        fechaNacimientoValida = new SimpleBooleanProperty(true);
+        
+        isAvatarEqual = new SimpleBooleanProperty(true);
+        isCorreoEqual = new SimpleBooleanProperty(true);
+        isContrasenyaEqual = new SimpleBooleanProperty(true);
+        isFechaNacimientoEqual = new SimpleBooleanProperty(true);
+        
         // Enlace para habilitar deshabilitar botón de MODIFICAR PERFIL
-        accionButton.disableProperty().bind(isAvatarEqual.and(isCorreoEqual).and(isContrasenyaEqual).and(isFehcaNacimientoEqual).and(Bindings.not(avatarValido.and(correoValido).and(contrasenyaValida).and(fechaNacimientoValida))));
+        accionButton.disableProperty().bind(Bindings.or(isAvatarEqual.and(isCorreoEqual).and(isContrasenyaEqual).and(isFechaNacimientoEqual), Bindings.not(avatarValido.and(correoValido).and(contrasenyaValida).and(fechaNacimientoValida))));
         
         // Oyentes del texto / valor
         fieldAvatar.textProperty().addListener((obs, oldVal, newVal) -> {
-            isAvatarEqual.setValue(this.usuario.getAvatar().getUrl().equals(newVal));
+            String u = this.usuario.getAvatar().getUrl();
+            isAvatarEqual.setValue(u == null ? newVal.isEmpty() : u.equals(newVal));
+            avatarValido.setValue(comprobarAvatar(newVal));
+            errorAvatar.setVisible(!avatarValido.getValue());
         });
         fieldCorreo.textProperty().addListener((obs, oldVal, newVal) -> {
             isCorreoEqual.setValue(this.usuario.getEmail().equals(newVal));
+            correoValido.setValue(User.checkEmail(newVal));
+            errorCorreo.setVisible(!correoValido.getValue() && !newVal.isEmpty());
         });
         fieldContrasenya.textProperty().addListener((obs, oldVal, newVal) -> {
             isContrasenyaEqual.setValue(this.usuario.getPassword().equals(newVal));
+            contrasenyaValida.setValue(User.checkPassword(newVal));
+            errorContrasenya.setVisible(!contrasenyaValida.getValue() && !newVal.isEmpty());
         });
         pickerFechaNacimiento.valueProperty().addListener((obs, oldVal, newVal) -> {
-            isFehcaNacimientoEqual.setValue(this.usuario.getBirthdate().equals(newVal));
+            isFechaNacimientoEqual.setValue(this.usuario.getBirthdate().equals(newVal));
+            fechaNacimientoValida.setValue(newVal != null && newVal.isBefore(LocalDate.now().minusYears(16)));
+            errorFechaNacimiento.setVisible(!fechaNacimientoValida.getValue() && newVal != null);
         });
     }
     
@@ -156,8 +134,41 @@ public class PantallaRegistroController implements Initializable {
         // Dar el foco al campo de texto del usuario
         fieldNick.requestFocus();
         
+        // Variables
+        avatarValido = new SimpleBooleanProperty(true);
+        nickValido = new SimpleBooleanProperty(false);
+        correoValido = new SimpleBooleanProperty(false);
+        contrasenyaValida = new SimpleBooleanProperty(false);
+        fechaNacimientoValida = new SimpleBooleanProperty(false);
+        
         // Enlace para habilitar / deshabilitar botón de REGISTRARSE
         accionButton.disableProperty().bind(Bindings.not(avatarValido.and(nickValido).and(correoValido).and(contrasenyaValida).and(fechaNacimientoValida)));
+        
+        // Oyentes del texto / valor
+        fieldAvatar.textProperty().addListener((obs, oldVal, newVal) -> {
+            avatarValido.setValue(comprobarAvatar(newVal));
+            errorAvatar.setVisible(!avatarValido.getValue());
+        });
+        fieldNick.textProperty().addListener((obs, oldVal, newVal) -> {
+            try {
+                nickValido.setValue(comprobarNick(newVal));
+                errorNick.setVisible(!nickValido.getValue() && !newVal.isEmpty());
+            } catch (NavDAOException ex) {
+                Logger.getLogger(PantallaRegistroController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
+        fieldCorreo.textProperty().addListener((obs, oldVal, newVal) -> {
+            correoValido.setValue(User.checkEmail(newVal));
+            errorCorreo.setVisible(!correoValido.getValue() && !newVal.isEmpty());
+        });
+        fieldContrasenya.textProperty().addListener((obs, oldVal, newVal) -> {
+            contrasenyaValida.setValue(User.checkPassword(newVal));
+            errorContrasenya.setVisible(!contrasenyaValida.getValue() && !newVal.isEmpty());
+        });
+        pickerFechaNacimiento.valueProperty().addListener((obs, oldVal, newVal) -> {
+            fechaNacimientoValida.setValue(newVal != null && newVal.isBefore(LocalDate.now().minusYears(16)));
+            errorFechaNacimiento.setVisible(!fechaNacimientoValida.getValue() && newVal != null);
+        });
     }
     
     public User getUsuario() {
@@ -166,59 +177,28 @@ public class PantallaRegistroController implements Initializable {
     
     private boolean comprobarAvatar(String ruta) {
         if (ruta.isEmpty()) {
-            errorAvatar.setVisible(false);
+            if (this.usuario == null) avatar.setImage(null);
+            else if (usuario.getAvatar().getUrl() == null) avatar.setImage(usuario.getAvatar());
             return true;
         }
         try {
             avatar.setImage(new Image(new FileInputStream(ruta)));
+            return true;
         } catch (FileNotFoundException e) {
-            errorAvatar.setVisible(true);
+            avatar.setImage(null);
             return false;
         }
-        errorAvatar.setVisible(false);
-        return true;
     }
     
     private boolean comprobarNick(String nick) throws NavDAOException {
         if (!User.checkNickName(nick)) {
-            errorNick.setVisible(true);
             errorNick.setText("Usuario no válido");
             return false;
         }
         if (Navigation.getInstance().exitsNickName(nick)) {
-            errorNick.setVisible(true);
             errorNick.setText("Ya existe un usuario con ese nombre");
             return false;
         }
-        errorNick.setText("Error");
-        errorNick.setVisible(false);
-        return true;
-    }
-    
-    private boolean comprobarCorreo(String correo) {
-        if (!User.checkEmail(correo)) {
-            errorCorreo.setVisible(true);
-            return false;
-        }
-        errorCorreo.setVisible(false);
-        return true;
-    }
-    
-    private boolean comprobarContrasenya(String contrasenya) {
-        if (!User.checkPassword(contrasenya)) {
-            errorContrasenya.setVisible(true);
-            return false;
-        }
-        errorContrasenya.setVisible(false);
-        return true;
-    }
-    
-    private boolean comprobarFechaNacimiento(LocalDate fecha) {
-        if (fecha == null || !fecha.isBefore(LocalDate.now().minusYears(16))) {
-            errorFechaNacimiento.setVisible(true);
-            return false;
-        }
-        errorFechaNacimiento.setVisible(false);
         return true;
     }
     

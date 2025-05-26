@@ -56,6 +56,7 @@ public class MenuController implements Initializable {
         stage.setScene(new Scene(root));
         stage.setTitle("Modificar Perfil");
         stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setResizable(false);
         
         // Llamar método para especificar que es para modificar perfil
         PantallaRegistroController controller = loader.getController();
