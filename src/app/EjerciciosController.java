@@ -28,17 +28,22 @@ import java.util.List;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.shape.Circle;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.paint.Color;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.Toggle;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import model.Answer;
 /**
  *
@@ -179,14 +184,8 @@ public class EjerciciosController implements Initializable {
         
         // Cargar problemas
         problems = Navigation.getInstance().getProblems();
-        displayProblem(getRandomProblem());
         
-        // Enlace para activar / deshabilitar botón de validar
-        validarButton.disableProperty().bind(respuestasToggleGroup.selectedToggleProperty().isNull());
-    }
-    
-    private Problem getRandomProblem() {
-        return problems.get(new Random().nextInt(problems.size()));
+        nuevoProblemaAleatorio();
     }
     
     private void displayProblem(Problem problem) {
@@ -201,6 +200,10 @@ public class EjerciciosController implements Initializable {
             rb.setToggleGroup(respuestasToggleGroup);
             contenedorRespuestas.getChildren().add(rb);
         }
+        
+        validarButton.disableProperty().unbind();
+        validarButton.setDisable(false);
+        validarButton.disableProperty().bind(respuestasToggleGroup.selectedToggleProperty().isNull());
     }
 
     @FXML
@@ -216,21 +219,35 @@ public class EjerciciosController implements Initializable {
             RadioButton rb = (RadioButton) toggle;
             rb.setStyle(((Answer) rb.getUserData()).getValidity() ? "-fx-text-fill: #40D040" : "-fx-text-fill: #E04040");
         }
+        
+        // Dehacer binding y desactivar botón de validar hasta que no se elija otro problema
         validarButton.disableProperty().unbind();
         validarButton.setDisable(true);
     }
     
     @FXML
-    private void nuevoProblemaAleatorio(ActionEvent event) {
-        displayProblem(getRandomProblem());
-        validarButton.disableProperty().unbind();
-        validarButton.setDisable(false);
-        validarButton.disableProperty().bind(respuestasToggleGroup.selectedToggleProperty().isNull());
+    private void nuevoProblemaAleatorio() {
+        Problem randomProblem = problems.get(new Random().nextInt(problems.size()));
+        displayProblem(randomProblem);
     }
     
     @FXML
-    private void elegirProblema(ActionEvent event) {
+    private void elegirProblema(ActionEvent event) throws IOException, NavDAOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("ListaProblemas.fxml"));
+        Stage stage = new Stage();
+        stage.setScene(new Scene(loader.load()));
+        stage.setTitle("Elegir problema");
+        stage.initModality(Modality.APPLICATION_MODAL);
         
+        // Instanciar lista
+        ListaProblemasController controlador = loader.getController();
+        controlador.instantiateList();
+        
+        stage.showAndWait();
+        
+        // Obtener problema y si existe mostrarlo
+        Problem problema = controlador.getProblem();
+        if (problema != null) displayProblem(problema);
     }
     
     @FXML

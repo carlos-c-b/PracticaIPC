@@ -19,7 +19,7 @@ public class Main extends Application {
     private static Scene scene;
     private static final HashMap<PantallaID, Pantalla<?>> pantallas = new HashMap<>();
     
-    public static void setRoot(PantallaID id) throws IOException {
+    public static void setRoot(PantallaID id) {
         scene.setRoot(pantallas.get(id).getRoot());
         stage.setTitle(pantallas.get(id).getTitle());
     }
