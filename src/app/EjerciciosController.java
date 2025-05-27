@@ -10,7 +10,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Group;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
@@ -251,7 +250,7 @@ public class EjerciciosController implements Initializable {
     }
     
     @FXML
-    private void volver(ActionEvent event) throws IOException {
+    private void atras(ActionEvent event) throws IOException {
         Main.setRoot(PantallaID.MENU);
     }
 

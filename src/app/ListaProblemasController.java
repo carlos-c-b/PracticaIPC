@@ -3,7 +3,6 @@ package app;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -41,7 +40,6 @@ public class ListaProblemasController implements Initializable {
         lista.setItems(FXCollections.observableList(Navigation.getInstance().getProblems()));
         lista.getSelectionModel().clearSelection();
         elegirButton.setDisable(true);
-        
     }
     
     public Problem getProblem() {
