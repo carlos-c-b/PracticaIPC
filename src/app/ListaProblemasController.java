@@ -26,7 +26,6 @@ public class ListaProblemasController implements Initializable {
     @FXML
     private Button elegirButton;
     
-    private ObservableList<Problem> problemas;
     private Problem problem;
 
     @Override
@@ -39,8 +38,7 @@ public class ListaProblemasController implements Initializable {
     }    
     
     public void instantiateList() throws NavDAOException {
-        problemas = FXCollections.observableList(Navigation.getInstance().getProblems());
-        lista.setItems(problemas);
+        lista.setItems(FXCollections.observableList(Navigation.getInstance().getProblems()));
         lista.getSelectionModel().clearSelection();
         elegirButton.setDisable(true);
         
