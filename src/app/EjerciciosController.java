@@ -39,6 +39,10 @@ import javafx.scene.shape.Line;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.input.MouseButton;
+import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import model.Answer;
 import javafx.scene.shape.Arc;
 import javafx.scene.shape.ArcType;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -52,10 +56,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.image.Image;
 import java.io.FileNotFoundException;
 import javafx.geometry.Bounds;
-import javafx.scene.layout.VBox;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-import model.Answer;
+
 /**
  *
  * @author Pablo
@@ -76,7 +77,6 @@ public class EjerciciosController implements Initializable {
     
     
     private Group zoomGroup;
-
     @FXML
     private ListView listView;
     @FXML
@@ -102,43 +102,43 @@ public class EjerciciosController implements Initializable {
     private Pane mapPane;
     @FXML
     private ToggleButton cursorButton;
-	@FXML
-	private ToggleButton textButton;
-	@FXML
-	private Slider widthSlider;
+    @FXML
+    private ToggleButton textButton;
+    @FXML
+    private Slider widthSlider;
 
-	private ImageView protractorView = new ImageView();
+    private ImageView protractorView = new ImageView();
 
-	private String urlImage = "."+File.separator+"src"+File.separator+"images"+File.separator+"transportador.png";
+    private String urlImage = "."+File.separator+"src"+File.separator+"images"+File.separator+"transportador.png";
     
     private Color color;
-
-	private Point2D localBase;
+    
+    private Point2D localBase;
     
     public Navigation nav;
     
     private double pressedX, pressedY; // Variables para comprobar que la posición en que se ha presionado
                                 // el ratón es la misma en la que se ha soltado
-
-	public double strokeWidth = 10;
-
-	private Line currentLine; // Línea actual siendo dibujada
-	private Arc currentArc; // Arco actual
-	private double rad;
-	private double startX;
-	private boolean angleLocked = false;
-	private double startAngle;
-	private double startY;
-
-	private double inicioTransX;
-	private double inicioTransY;
-	private double baseX;
-	private double baseY;
-        
-
-	private ToggleButton currentToggle; // Botón actualmente seleccionado
-
-	private AtomicBoolean erasing; // Variable para cuando la goma está seleccionada y mantenemos pulsado sobre el mapa
+    
+    public double strokeWidth = 10;
+    
+    private Line currentLine; // Línea actual siendo dibujada
+    private Arc currentArc; // Arco actual
+    private double rad;
+    private double startX;
+    private boolean angleLocked = false;
+    private double startAngle;
+    private double startY;
+    
+    private double inicioTransX;
+    private double inicioTransY;
+    private double baseX;
+    private double baseY;
+    
+    
+    private ToggleButton currentToggle; // Botón actualmente seleccionado
+    
+    private AtomicBoolean erasing; // Variable para cuando la goma está seleccionada y mantenemos pulsado sobre el mapa
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -297,12 +297,12 @@ public class EjerciciosController implements Initializable {
                 addContextMenu(currentArc);
                 addDeleteOnRubber(currentArc);
             }
-
+            
             // Funcionalidad goma
             if (rubberButton.isSelected() && event.getButton() == MouseButton.PRIMARY) {
-                    erasing.set(true);
+                erasing.set(true);
             }
-
+            
             // Funcionalidad texto
             if (textButton.isSelected() && event.getButton() == MouseButton.PRIMARY) {
                 TextField text = new TextField();
@@ -406,6 +406,7 @@ public class EjerciciosController implements Initializable {
         double sliderVal = zoom_slider.getValue();
         zoom_slider.setValue(sliderVal + 0.1);
     }
+    
     void zoomOut() {
         double sliderVal = zoom_slider.getValue();
         zoom_slider.setValue(sliderVal - 0.1);
@@ -507,14 +508,13 @@ public class EjerciciosController implements Initializable {
     private void coordinates(MouseEvent event) {
 	mousePosition.setText("(" + event.getX() + ", " + event.getY() + ")");
     }
-	
-
+    
     @FXML
     private void handleMouseReleased(MouseEvent event) {
         double sceneX = event.getSceneX();
         double sceneY = event.getSceneY();
-            double localX = event.getX();
-            double localY = event.getY();
+        double localX = event.getX();
+        double localY = event.getY();
         if (pointButton.isSelected()) paintPoint(sceneX, sceneY, localX, localY);
     }
     
@@ -583,20 +583,20 @@ public class EjerciciosController implements Initializable {
             event.consume();
         });
     }
-
+    
     // Método para añadir a cualquier forma y poder borrarla con la goma
     private void addDeleteOnRubber(Node node) {
         node.setOnMousePressed(event -> {
-            if (rubberButton.isSelected())
-                remove(node);
+            if(rubberButton.isSelected()) remove(node);
         });
     }
-
+    
     private void remove(Node node) {
         mapPane.getChildren().remove(node);
     }
-
+    
     private void addToPane(Node node) {
         mapPane.getChildren().add(node);
     }
+    
 }
