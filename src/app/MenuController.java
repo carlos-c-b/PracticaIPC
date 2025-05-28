@@ -13,6 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import model.NavDAOException;
 import model.User;
 import modelo.PantallaID;
 
@@ -67,7 +68,7 @@ public class MenuController implements Initializable {
     
     /** Cambiar escena a "PantallaEjercicios" */
     @FXML
-    private void hacerEjercicios(ActionEvent event) throws IOException {
+    private void hacerEjercicios(ActionEvent event) throws IOException, NavDAOException {
         Main.setRoot(PantallaID.EJERCICIOS);
         EjerciciosController controlador = Main.getController(PantallaID.EJERCICIOS);
         controlador.setUsuario(usuario);

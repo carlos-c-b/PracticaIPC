@@ -103,10 +103,29 @@
                            </children>
                         </Pane>
                      </content>
+                     <StackPane.margin>
+                        <Insets />
+                     </StackPane.margin>
                   </ScrollPane>
-                  <ToolBar maxWidth="318.0" prefHeight="50.0" prefWidth="318.0">
+                  <ToolBar maxWidth="561.0" prefHeight="50.0" prefWidth="561.0">
                     <items>
-                        <ToggleButton fx:id="dotButton" maxHeight="40.0" maxWidth="40.0" minHeight="40.0" minWidth="40.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0">
+                        <ToggleButton fx:id="cursorButton" maxHeight="40.0" maxWidth="40.0" minHeight="40.0" minWidth="40.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0">
+                           <graphic>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <ImageView fitHeight="31.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true" scaleX="0.7" scaleY="0.7" scaleZ="0.7">
+                                       <image>
+                                          <Image url="@../images/mouse.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                                 <padding>
+                                    <Insets left="3.0" />
+                                 </padding>
+                              </HBox>
+                           </graphic>
+                        </ToggleButton>
+                        <ToggleButton fx:id="pointButton" maxHeight="40.0" maxWidth="40.0" minHeight="40.0" minWidth="40.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0">
                            <graphic>
                               <Circle radius="9.0" stroke="BLACK" strokeType="INSIDE" />
                            </graphic>
@@ -124,6 +143,11 @@
                                  </image>
                               </ImageView>
                            </graphic>
+                        </ToggleButton>
+                        <ToggleButton fx:id="textButton" maxHeight="40.0" maxWidth="40.0" minHeight="40.0" minWidth="40.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" text="Tx">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
                         </ToggleButton>
                         <ToggleButton fx:id="protractorButton" maxHeight="40.0" maxWidth="40.0" minHeight="40.0" minWidth="40.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0">
                            <graphic>
@@ -144,25 +168,12 @@
                            </graphic>
                         </ToggleButton>
                         <ColorPicker fx:id="colorButton" maxHeight="40.0" maxWidth="40.0" minHeight="40.0" minWidth="40.0" prefHeight="40.0" prefWidth="40.0" />
-                        <Button maxHeight="100.0" maxWidth="100.0" minHeight="40.0" minWidth="40.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0">
-                           <graphic>
-                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
-                                 <children>
-                                    <Line endX="25.0" scaleX="0.928571428571" strokeWidth="3.0" />
-                                    <Line endX="25.0" scaleX="0.932962962963" strokeWidth="2.0">
-                                       <VBox.margin>
-                                          <Insets top="5.0" />
-                                       </VBox.margin>
-                                    </Line>
-                                    <Line endX="25.0">
-                                       <VBox.margin>
-                                          <Insets top="5.0" />
-                                       </VBox.margin>
-                                    </Line>
-                                 </children>
-                              </VBox>
-                           </graphic>
-                        </Button>
+                        <Label text="Trazo: ">
+                           <padding>
+                              <Insets left="5.0" />
+                           </padding>
+                        </Label>
+                        <Slider fx:id="widthSlider" />
                     </items>
                   </ToolBar>
                   <ToolBar maxWidth="149.0" minWidth="0.0" prefHeight="40.0" prefWidth="149.0" StackPane.alignment="BOTTOM_LEFT">
