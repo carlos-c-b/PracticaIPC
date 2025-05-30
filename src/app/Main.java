@@ -6,6 +6,8 @@ import javafx.scene.Scene;
 import javafx.fxml.FXMLLoader;
 import java.io.IOException;
 import java.util.HashMap;
+import javafx.geometry.Rectangle2D;
+import javafx.stage.Screen;
 import modelo.PantallaID;
 import modelo.Pantalla;
 
@@ -47,8 +49,12 @@ public class Main extends Application {
         pantallas.put(PantallaID.EJERCICIOS, new Pantalla<>(loader.load(), loader.getController(), "Ejercicios"));
         
         // Cargar la pantalla de Inicio
-        scene = new Scene(pantallas.get(PantallaID.INICIO).getRoot(), 1280, 720);
+        Rectangle2D bounds = Screen.getPrimary().getBounds();
+        double w = bounds.getWidth() * 0.65;
+        double h = bounds.getHeight() * 0.65;
+        scene = new Scene(pantallas.get(PantallaID.INICIO).getRoot(), w, h);
         stage.setScene(scene);
+        stage.setMaximized(true);
         stage.setTitle(pantallas.get(PantallaID.INICIO).getTitle());
         stage.show();
         
