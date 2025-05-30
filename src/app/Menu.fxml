@@ -7,12 +7,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="400.0" spacing="8.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.MenuController">
-   <padding>
-      <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
-   </padding>
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.MenuController">
    <children>
-      <HBox alignment="CENTER_RIGHT" spacing="8.0">
+      <HBox alignment="CENTER_RIGHT" spacing="8.0" style="-fx-background-color: LIGHTGREY;">
          <children>
             <Button mnemonicParsing="false" onAction="#cerrarSesion" prefHeight="32.0" text="CERRAR SESIÓN" />
             <Button fx:id="perfilButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#modificarPerfil" text="Usuario">
@@ -24,12 +21,24 @@
                </font>
             </Button>
          </children>
+         <padding>
+            <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+         </padding>
       </HBox>
-      <VBox alignment="CENTER" spacing="32.0" VBox.vgrow="ALWAYS">
+      <VBox alignment="TOP_CENTER" spacing="32.0" VBox.vgrow="ALWAYS">
          <children>
-            <Button mnemonicParsing="false" onAction="#hacerEjercicios" prefHeight="32.0" text="EJERCICIOS" />
-            <Button mnemonicParsing="false" onAction="#mostrarResultados" prefHeight="32.0" text="MOSTRAR RESULTADOS" />
+            <Button mnemonicParsing="false" onAction="#hacerEjercicios" text="Realizar ejercicios">
+               <font>
+                  <Font size="18.0" />
+               </font></Button>
+            <Button mnemonicParsing="false" onAction="#mostrarResultados" text="Mostrar resultados">
+               <font>
+                  <Font size="18.0" />
+               </font></Button>
          </children>
+         <padding>
+            <Insets bottom="96.0" left="96.0" right="96.0" top="96.0" />
+         </padding>
       </VBox>
    </children>
 </VBox>

@@ -23,9 +23,9 @@
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.EjerciciosController">
    <children>
-      <HBox alignment="CENTER" prefHeight="97.0" prefWidth="1280.0" style="-fx-background-color: LIGHTGRAY;">
+      <HBox alignment="CENTER" style="-fx-background-color: LIGHTGRAY;">
          <children>
-            <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#atras" prefWidth="24.0">
+            <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#atras" prefHeight="32.0" prefWidth="32.0">
                <graphic>
                   <ImageView fitHeight="16.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -34,7 +34,7 @@
                   </ImageView>
                </graphic></Button>
             <Region prefHeight="26.0" HBox.hgrow="ALWAYS" />
-            <Button mnemonicParsing="false" onMouseClicked="#zoomOut" text="-" />
+            <Button mnemonicParsing="false" onMouseClicked="#zoomOut" prefWidth="24.5" text="-" />
             <Slider fx:id="zoom_slider">
                <HBox.margin>
                   <Insets left="6.0" right="5.0" />
@@ -43,10 +43,10 @@
             <Button mnemonicParsing="false" onMouseClicked="#zoomIn" text="+" />
          </children>
          <padding>
-            <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+            <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
          </padding>
       </HBox>
-      <SplitPane dividerPositions="0.5" prefHeight="745.0" prefWidth="1280.0">
+      <SplitPane dividerPositions="0.5" VBox.vgrow="ALWAYS">
         <items>
             <VBox maxWidth="280.0" minWidth="206.0" spacing="8.0">
                <padding>
@@ -89,9 +89,9 @@
                   </HBox>
                </children>
             </VBox>
-            <StackPane alignment="TOP_LEFT" prefHeight="150.0" prefWidth="200.0">
+            <StackPane alignment="TOP_LEFT">
                <children>
-                  <ScrollPane fx:id="map_scrollpane" hbarPolicy="ALWAYS" onMouseMoved="#coordinates" pannable="true" prefHeight="158.0" prefWidth="1109.0" vbarPolicy="ALWAYS">
+                  <ScrollPane fx:id="map_scrollpane" hbarPolicy="ALWAYS" onMouseMoved="#coordinates" pannable="true" vbarPolicy="ALWAYS">
                      <content>
                         <Pane fx:id="mapPane" onMouseReleased="#handleMouseReleased">
                            <children>
@@ -107,7 +107,7 @@
                         <Insets />
                      </StackPane.margin>
                   </ScrollPane>
-                  <ToolBar maxWidth="561.0" prefHeight="50.0" prefWidth="561.0">
+                  <ToolBar maxWidth="-Infinity" prefHeight="50.0" prefWidth="561.0">
                     <items>
                         <ToggleButton fx:id="cursorButton" maxHeight="40.0" maxWidth="40.0" minHeight="40.0" minWidth="40.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0">
                            <graphic>
@@ -176,7 +176,7 @@
                         <Slider fx:id="widthSlider" />
                     </items>
                   </ToolBar>
-                  <ToolBar maxWidth="149.0" minWidth="0.0" prefHeight="40.0" prefWidth="149.0" StackPane.alignment="BOTTOM_LEFT">
+                  <ToolBar maxWidth="-Infinity" minWidth="0.0" prefHeight="40.0" prefWidth="149.0" StackPane.alignment="BOTTOM_LEFT">
                      <StackPane.margin>
                         <Insets bottom="15.0" left="1.0" />
                      </StackPane.margin>

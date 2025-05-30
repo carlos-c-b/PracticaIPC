@@ -82,7 +82,7 @@
          <children>
             <Button mnemonicParsing="false" onAction="#cancelar" text="CANCELAR" />
             <Region HBox.hgrow="ALWAYS" />
-            <Button fx:id="accionButton" mnemonicParsing="false" onAction="#accion" text="ACCIÓN" />
+            <Button fx:id="accionButton" defaultButton="true" mnemonicParsing="false" onAction="#accion" text="ACCIÓN" />
          </children>
       </HBox>
    </children>

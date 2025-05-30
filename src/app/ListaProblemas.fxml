@@ -14,7 +14,7 @@
          <children>
             <Button mnemonicParsing="false" onAction="#cancelar" text="CANCELAR" />
             <Region HBox.hgrow="ALWAYS" />
-            <Button fx:id="elegirButton" mnemonicParsing="false" onAction="#elegir" text="ELEGIR" />
+            <Button fx:id="elegirButton" defaultButton="true" mnemonicParsing="false" onAction="#elegir" text="ELEGIR" />
          </children>
       </HBox>
    </children>

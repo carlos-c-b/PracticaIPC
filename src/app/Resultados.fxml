@@ -14,19 +14,30 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox prefHeight="300.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.ResultadosController">
+<VBox prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.ResultadosController">
    <children>
-      <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#atras" prefWidth="24.0">
-         <graphic>
-            <ImageView fitHeight="16.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/Atras.png" />
-               </image>
-            </ImageView>
-         </graphic></Button>
-      <VBox alignment="CENTER" spacing="32.0" VBox.vgrow="ALWAYS">
+      <HBox style="-fx-background-color: LIGHTGREY;">
          <children>
-            <GridPane alignment="CENTER" hgap="8.0" vgap="8.0">
+            <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#atras" prefHeight="32.0" prefWidth="32.0">
+               <graphic>
+                  <ImageView fitHeight="16.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/Atras.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+         <padding>
+            <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+         </padding>
+      </HBox>
+      <VBox alignment="CENTER" spacing="64.0" VBox.vgrow="ALWAYS">
+         <children>
+            <GridPane alignment="CENTER" hgap="8.0" vgap="16.0">
               <columnConstraints>
                   <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" />
                 <ColumnConstraints minWidth="10.0" />
@@ -38,56 +49,71 @@
               </rowConstraints>
                <children>
                   <DatePicker fx:id="desdeDatePicker" prefWidth="128.0" GridPane.columnIndex="1" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Desde:" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Desde:">
+                     <font>
+                        <Font size="13.0" />
+                     </font></Text>
                   <Button fx:id="desdeButton" mnemonicParsing="false" onAction="#desdeHoy" text="HOY" GridPane.columnIndex="2" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Hasta:" GridPane.rowIndex="1" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Hasta:" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="13.0" />
+                     </font></Text>
                   <DatePicker fx:id="hastaDatePicker" prefWidth="128.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <Button fx:id="hastaButton" mnemonicParsing="false" onAction="#hastaHoy" text="HOY" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
             </GridPane>
-            <HBox alignment="CENTER" spacing="32.0">
+            <VBox spacing="16.0">
                <children>
-                  <VBox alignment="CENTER" spacing="4.0">
+                  <HBox alignment="CENTER" spacing="32.0">
                      <children>
-                        <Text fill="#40d040" strokeType="OUTSIDE" strokeWidth="0.0" text="ACIERTOS">
-                           <font>
-                              <Font name="System Bold" size="12.0" />
-                           </font>
-                        </Text>
-                        <Text fx:id="textAciertos" fill="#40d040" strokeType="OUTSIDE" strokeWidth="0.0" text="4">
-                           <font>
-                              <Font name="System Bold" size="12.0" />
-                           </font></Text>
-                     </children>
-                  </VBox>
-                  <VBox alignment="CENTER" spacing="4.0">
-                     <children>
-                        <Text fill="#e04040" strokeType="OUTSIDE" strokeWidth="0.0" text="FALLOS">
-                           <font>
-                              <Font name="System Bold" size="12.0" />
-                           </font>
-                        </Text>
-                        <Text fx:id="textFallos" fill="#e04040" strokeType="OUTSIDE" strokeWidth="0.0" text="6">
-                           <font>
-                              <Font name="System Bold" size="12.0" />
-                           </font></Text>
-                     </children>
-                  </VBox>
-               </children>
-            </HBox>
-            <VBox alignment="CENTER" fillWidth="false">
-               <children>
-                  <Text fx:id="pText" fill="GREY" strokeType="OUTSIDE" strokeWidth="0.0" text="40%">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                  </Text>
-                  <HBox prefHeight="16.0" prefWidth="200.0" style="-fx-background-color: #808080;">
-                     <children>
-                        <Rectangle fx:id="pAciertos" fill="#40d040" height="16.0" stroke="TRANSPARENT" strokeType="INSIDE" width="80.0" />
-                        <Rectangle fx:id="pFallos" fill="#e04040" height="16.0" stroke="TRANSPARENT" strokeType="INSIDE" width="120.0" />
+                        <VBox alignment="CENTER" spacing="4.0">
+                           <children>
+                              <Text fill="#40d040" strokeType="OUTSIDE" strokeWidth="0.0" text="ACIERTOS">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="textAciertos" fill="#40d040" strokeType="OUTSIDE" strokeWidth="0.0" text="4">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" spacing="4.0">
+                           <children>
+                              <Text fill="#e04040" strokeType="OUTSIDE" strokeWidth="0.0" text="FALLOS">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="textFallos" fill="#e04040" strokeType="OUTSIDE" strokeWidth="0.0" text="6">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </VBox>
                      </children>
                   </HBox>
+                  <VBox alignment="CENTER" fillWidth="false">
+                     <children>
+                        <Text fx:id="pText" fill="GREY" strokeType="OUTSIDE" strokeWidth="0.0" text="40%">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Text>
+                        <HBox prefHeight="16.0" prefWidth="200.0" style="-fx-background-color: #808080;">
+                           <children>
+                              <Rectangle fx:id="pAciertos" fill="#40d040" height="16.0" stroke="TRANSPARENT" strokeType="INSIDE" width="80.0" />
+                              <Rectangle fx:id="pFallos" fill="#e04040" height="16.0" stroke="TRANSPARENT" strokeType="INSIDE" width="120.0" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
                </children>
             </VBox>
          </children>
@@ -96,7 +122,4 @@
          </padding>
       </VBox>
    </children>
-   <padding>
-      <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
-   </padding>
 </VBox>

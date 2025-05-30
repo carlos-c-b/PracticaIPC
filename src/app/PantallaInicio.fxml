@@ -18,7 +18,7 @@
             </Label>
          </children>
       </HBox>
-      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="32.0">
          <children>
             <Button mnemonicParsing="false" onAction="#cambiarARegistro" text="Registrarse">
                <font>
@@ -27,7 +27,7 @@
             </Button>
             <Button mnemonicParsing="false" onAction="#cambiarAInicioSesion" text="Iniciar Sesion">
                <VBox.margin>
-                  <Insets top="40.0" />
+                  <Insets />
                </VBox.margin>
                <font>
                   <Font size="18.0" />

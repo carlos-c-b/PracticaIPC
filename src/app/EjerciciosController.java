@@ -55,6 +55,7 @@ import java.io.FileInputStream;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.Image;
 import java.io.FileNotFoundException;
+import java.util.Locale;
 import javafx.geometry.Bounds;
 
 /**
@@ -506,7 +507,9 @@ public class EjerciciosController implements Initializable {
 
     @FXML
     private void coordinates(MouseEvent event) {
-	mousePosition.setText("(" + event.getX() + ", " + event.getY() + ")");
+        String x = String.format(Locale.US, "%.2f", event.getX());
+        String y = String.format(Locale.US, "%.2f", event.getY());
+	mousePosition.setText("(" + x + ", " + y + ")");
     }
     
     @FXML

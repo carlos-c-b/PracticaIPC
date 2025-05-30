@@ -36,7 +36,7 @@
       <HBox spacing="128.0">
          <children>
             <Button mnemonicParsing="false" onAction="#cancelar" text="CANCELAR" />
-            <Button fx:id="iniciarSesionButton" mnemonicParsing="false" onAction="#iniciarSesion" text="INICIAR SESIÓN" />
+            <Button fx:id="iniciarSesionButton" defaultButton="true" mnemonicParsing="false" onAction="#iniciarSesion" text="INICIAR SESIÓN" />
          </children>
       </HBox>
    </children>
