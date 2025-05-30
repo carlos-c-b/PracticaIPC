@@ -192,7 +192,7 @@ public class PantallaRegistroController implements Initializable {
     
     private boolean comprobarNick(String nick) throws NavDAOException {
         if (!User.checkNickName(nick)) {
-            errorNick.setText("Usuario no válido");
+            errorNick.setText("El usuario ha de tener entre 6 y 15 caracteres: mayúsculas, minúsculas, números y/o guiones");
             return false;
         }
         if (Navigation.getInstance().exitsNickName(nick)) {
